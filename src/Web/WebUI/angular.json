@@ -3,17 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "web.client": {
+    "webui": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
+        "@schematics/angular:application": {
+          "strict": true,
+          "style": "scss",
+          "standalone": true
         }
       },
       "root": "",
@@ -23,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/web.client",
+            "outputPath": "dist/webui",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -35,9 +31,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -67,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "web.client:build:production"
+              "buildTarget": "webui:build:production"
             },
             "development": {
-              "buildTarget": "web.client:build:development"
+              "buildTarget": "webui:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -81,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "web.client:build"
+            "buildTarget": "webui:build"
           }
         },
         "test": {
@@ -97,7 +99,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"
@@ -107,6 +109,6 @@
     }
   },
   "cli": {
-    "analytics": "1fd0f243-4de4-4310-966a-2f4c54dbb84d"
+    "analytics": "5e089af0-47a6-46e2-a71f-98388c268435"
   }
 }

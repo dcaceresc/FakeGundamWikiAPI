@@ -1,0 +1,44 @@
+<section class="vh-100">
+    <div class="container py-5 h-100 ">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <img height="100" class="rounded mx-auto d-block" src="">
+
+                        @if (errorMessage)
+                        {
+                            <div class="mt-3 alert alert-danger" role="alert">
+                                {{errorMessage}}
+                            </div>
+                        }
+
+                        <form class="mt-3" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-lg" id="userName" formControlName="userName" placeholder="Nombre Usuario" />
+                                <label for="userName" class="form-label fw-bold"><fa-icon [icon]="userIcon"></fa-icon> Usuario</label>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input type="password" class="form-control form-control-lg" id="password" formControlName="password" placeholder="Contraseña" required>
+                                <label for="password" class="form-label fw-bold"><fa-icon [icon]="passwordIcon"></fa-icon> Contraseña</label>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block w-100" type="submit" [disabled]="userForm.invalid">Ingresar</button>
+                            <div class="text-center mt-1">
+                                <a href="" target="_blank" class="link-primary">Olvidaste tu contraseña?</a>
+                            </div>
+
+                            <div class="mt-3 mb-3 text-center">
+                                <p>Cont&aacute;ctanos: <a style=" display: inline-block; padding-right:10px;" class="link-primary"><strong>FakeApiGundam&#64;gmail.com</strong></a></p>
+                                <p> © {{currentYear}} FakeApiGundam </p>
+                            </div>
+
+                        </form>
+                           
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
