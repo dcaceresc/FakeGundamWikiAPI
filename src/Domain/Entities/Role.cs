@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.FakeApiGundam;
+﻿namespace Domain.Entities;
 public class Role : AuditableEntity
 {
     private Role(string roleName)

@@ -1,8 +1,8 @@
 ﻿using Application.Administration.Security.Roles.Commands.CreateRole;
+using Application.Administration.Security.Roles.Commands.ToggleRole;
 using Application.Administration.Security.Roles.Commands.UpdateRole;
 using Application.Administration.Security.Roles.Queries.GetRoleById;
 using Application.Administration.Security.Roles.Queries.GetRoles;
-using Application.Administration.Security.Roles.Commands.ToggleRole;
 
 namespace WebApi.Controllers.Security;
 

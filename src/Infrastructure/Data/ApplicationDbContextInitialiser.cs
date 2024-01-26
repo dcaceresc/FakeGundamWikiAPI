@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Domain.Entities.FakeApiGundam;
+using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

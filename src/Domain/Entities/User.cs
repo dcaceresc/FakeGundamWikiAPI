@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.FakeApiGundam;
+﻿namespace Domain.Entities;
 public class User : AuditableEntity
 {
     private User(string userName, string firstName, string lastName)
@@ -33,7 +33,7 @@ public class User : AuditableEntity
     public UserRole AssignRole(int roleId)
     {
         var userRole = UserRole.Create(UserId, roleId);
-        
+
         return userRole;
     }
 

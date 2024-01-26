@@ -1,7 +1,7 @@
 ﻿using Application.Administration.Security.Account.Commands.AdminLogin;
+using Application.Administration.Security.Account.Commands.CreateTokens;
 using Application.Administration.Security.Account.Commands.UpdateRefreshToken;
 using Application.Administration.Security.Account.Commands.UserLogin;
-using Application.Administration.Security.Account.Commands.CreateTokens;
 
 namespace WebApi.Controllers.Security;
 [Route("api/Security/[controller]")]

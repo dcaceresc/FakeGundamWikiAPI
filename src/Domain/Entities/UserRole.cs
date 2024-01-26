@@ -1,7 +1,7 @@
-﻿namespace Domain.Entities.FakeApiGundam;
+﻿namespace Domain.Entities;
 public class UserRole : AuditableEntity
 {
-    private UserRole(int userId, int roleId) 
+    private UserRole(int userId, int roleId)
     {
         UserId = userId;
         RoleId = roleId;

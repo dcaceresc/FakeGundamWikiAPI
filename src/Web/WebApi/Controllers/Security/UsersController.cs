@@ -1,8 +1,8 @@
 ﻿using Application.Administration.Security.Users.Commands.CreateUser;
+using Application.Administration.Security.Users.Commands.ToggleUser;
 using Application.Administration.Security.Users.Commands.UpdateUser;
 using Application.Administration.Security.Users.Queries.GetUserById;
 using Application.Administration.Security.Users.Queries.GetUsers;
-using Application.Administration.Security.Users.Commands.ToggleUser;
 
 namespace WebApi.Controllers.Security;
 

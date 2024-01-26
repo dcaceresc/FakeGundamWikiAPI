@@ -1,7 +1,7 @@
-﻿namespace Domain.Entities.FakeApiGundam;
+﻿namespace Domain.Entities;
 public class RefreshToken : AuditableEntity
 {
-    private RefreshToken( int userId)
+    private RefreshToken(int userId)
     {
         RefreshTokenValue = Guid.NewGuid().ToString("N");
         RefreshTokenExpiration = DateTime.Now.AddDays(7);
