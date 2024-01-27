@@ -31,6 +31,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapCarter();
 
 app.MapFallbackToFile("/index.html");
 

@@ -15,6 +15,8 @@ public static class ConfigureServices
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
 
+        services.AddCarter();
+
         services.AddSwaggerGen(c =>
         {
 
