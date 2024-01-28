@@ -9,11 +9,13 @@ public class UsersModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/users", GetUsers);
-        app.MapGet("/users/{id}", GetUsersById);
-        app.MapPost("/users/create", CreateUser);
-        app.MapPut("/users/update/{id}", UpdateUser);
-        app.MapDelete("/users/delete/{id}", ToggleUser);
+        var users = app.MapGroup("/api/users");
+
+        users.MapGet("", GetUsers);
+        users.MapGet("/{id}", GetUsersById);
+        users.MapPost("/create", CreateUser);
+        users.MapPut("/update/{id}", UpdateUser);
+        users.MapDelete("/toggle/{id}", ToggleUser);
     }
 
     private async Task<IResult> GetUsers(ISender sender)

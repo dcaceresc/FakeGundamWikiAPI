@@ -18,4 +18,15 @@ public class Affiliation : AuditableEntity
     {
         return new Affiliation(affiliationName, affiliationPurpose);
     }
+
+    public void Update(string affiliationName, string affiliationPurpose)
+    {
+        AffiliationName = affiliationName;
+        AffiliationPurpose = affiliationPurpose;
+    }
+
+    public void ToggleActive()
+    {
+        IsActive = !IsActive;
+    }
 }

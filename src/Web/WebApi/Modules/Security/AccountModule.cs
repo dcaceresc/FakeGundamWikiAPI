@@ -11,9 +11,11 @@ public class AccountModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("login", UserLogin);
-        app.MapPost("admin", AdminLogin);
-        app.MapPost("refreshToken", RefreshToken);
+        var account = app.MapGroup("/api/account");
+
+        account.MapPost("/login", UserLogin);
+        account.MapPost("/admin", AdminLogin);
+        account.MapPost("/refreshToken", RefreshToken);
     }
 
     private async Task<IResult> RefreshToken(UpdateRefreshTokenCommand command, ISender sender)

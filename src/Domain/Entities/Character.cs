@@ -44,4 +44,9 @@ public class Character : AuditableEntity
         return characterAffiliation;
     }
 
+    public void ToggleActive()
+    {
+        IsActive = !IsActive;
+    }
+
 }

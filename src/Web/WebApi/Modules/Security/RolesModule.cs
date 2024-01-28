@@ -10,12 +10,14 @@ public class RolesModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/roles", GetRoles)
+        var roles = app.MapGroup("/api/roles");
+
+        roles.MapGet("", GetRoles)
             .RequireAuthorization();
-        app.MapGet("/roles/{id}", GetRolesById);
-        app.MapPost("/roles/create", CreateRole);
-        app.MapPut("/roles/update/{id}", UpdateRole);
-        app.MapDelete("/roles/toggle/{id}", ToggleRole);
+        roles.MapGet("/{id}", GetRolesById);
+        roles.MapPost("/create", CreateRole);
+        roles.MapPut("/update/{id}", UpdateRole);
+        roles.MapDelete("/toggle/{id}", ToggleRole);
     }
 
     private async Task<IResult> GetRoles(ISender sender)
