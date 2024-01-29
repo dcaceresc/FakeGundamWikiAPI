@@ -15,12 +15,21 @@ public class CreateMobileSuitCommandHandler(IApplicationDbContext context) : IRe
 
     public async Task<int> Handle(CreateMobileSuitCommand request, CancellationToken cancellationToken)
     {
-        var entity = MobileSuit.Create(request.MobileSuitName, request.MobileSuitUnitType, request.MobileSuitFirstSeen,request.MobileSuitLastSeen, request.ManufacturerId);
+        var mobileSuit = MobileSuit.Create(request.MobileSuitName, request.MobileSuitUnitType, request.MobileSuitFirstSeen,request.MobileSuitLastSeen, request.ManufacturerId);
 
-        _context.MobileSuits.Add(entity);
+        _context.MobileSuits.Add(mobileSuit);
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return entity.MobileSuitId;
+        foreach (var item in request.PilotIds)
+        {
+            var mobileSuitPilot = mobileSuit.AssignPilot(item);
+
+            _context.MobileSuitPilots.Add(mobileSuitPilot);
+        }
+
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return mobileSuit.MobileSuitId;
     }
 }

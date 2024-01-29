@@ -89,13 +89,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.MobileSuitName)
             .HasColumnType("varchar(100)");
 
-            entity.Property(e => e.UnitType)
+            entity.Property(e => e.MobileSuitUnitType)
             .HasColumnType("varchar(100)");
 
-            entity.Property(e => e.FirstSeen)
+            entity.Property(e => e.MobileSuitFirstSeen)
             .HasColumnType("varchar(50)");
 
-            entity.Property(e => e.LastSeen)
+            entity.Property(e => e.MobileSuitLastSeen)
             .HasColumnType("varchar(50)");
 
         });

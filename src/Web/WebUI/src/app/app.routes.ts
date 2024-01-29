@@ -6,8 +6,14 @@ import { AdminGuard } from './core/guards/admin.guard';
 const routes: Routes = [
   { 
     path: '', 
-    loadComponent: () => import('./features/administration/security/pages/account/user-login/user-login.component').then(m => m.UserLoginComponent),
-    pathMatch: 'full'
+    loadComponent: () => import('./shared/layouts/frontend-layout/frontend-layout.component').then(m => m.FrontendLayoutComponent),
+    pathMatch: 'full',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
+      }
+    ]
   },
   {
     path: 'admin', 
@@ -15,7 +21,7 @@ const routes: Routes = [
   },
   { 
     path : '', 
-    loadComponent: () => import('./shared/layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+    loadComponent: () => import('./shared/layouts/backend-layout/backend-layout.component').then(m => m.BackEndLayoutComponent),
     canActivate : [AuthorizeGuard], 
     children: [
       {
