@@ -4,6 +4,7 @@ public class Universe : AuditableEntity
     private Universe(string universeName)
     {
         UniverseName = universeName;
+        IsActive = true;
     }
 
     public int UniverseId { get; set; }
