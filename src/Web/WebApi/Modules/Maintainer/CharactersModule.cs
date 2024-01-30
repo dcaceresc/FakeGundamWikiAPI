@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.Characters.Commands.CreateCharacter;
-using Application.Administration.Maintainer.Characters.Commands.ToggleCharacter;
-using Application.Administration.Maintainer.Characters.Commands.UpdateCharacter;
-using Application.Administration.Maintainer.Characters.Queries.GetCharacterById;
-using Application.Administration.Maintainer.Characters.Queries.GetCharacters;
+﻿using Application.Maintainer.Characters.Commands.CreateCharacter;
+using Application.Maintainer.Characters.Commands.ToggleCharacter;
+using Application.Maintainer.Characters.Commands.UpdateCharacter;
+using Application.Maintainer.Characters.Queries.GetCharacterById;
+using Application.Maintainer.Characters.Queries.GetCharacters;
 
 namespace WebApi.Modules.Maintainer;
 

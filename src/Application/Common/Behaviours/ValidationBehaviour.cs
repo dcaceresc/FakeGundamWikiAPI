@@ -1,4 +1,5 @@
-﻿namespace Application.Common.Behaviours;
+﻿
+namespace Application.Common.Behaviours;
 public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators) : IPipelineBehavior<TRequest, TResponse>
      where TRequest : notnull
 {

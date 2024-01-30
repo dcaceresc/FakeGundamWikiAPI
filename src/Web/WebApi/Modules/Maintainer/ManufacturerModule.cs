@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.Manufacturers.Commands.CreateManufacturer;
-using Application.Administration.Maintainer.Manufacturers.Commands.ToggleManufacturer;
-using Application.Administration.Maintainer.Manufacturers.Commands.UpdateManufacturer;
-using Application.Administration.Maintainer.Manufacturers.Queries.GetManufacturerById;
-using Application.Administration.Maintainer.Manufacturers.Queries.GetManufacturers;
+﻿using Application.Maintainer.Manufacturers.Commands.CreateManufacturer;
+using Application.Maintainer.Manufacturers.Commands.ToggleManufacturer;
+using Application.Maintainer.Manufacturers.Commands.UpdateManufacturer;
+using Application.Maintainer.Manufacturers.Queries.GetManufacturerById;
+using Application.Maintainer.Manufacturers.Queries.GetManufacturers;
 
 namespace WebApi.Modules.Maintainer;
 

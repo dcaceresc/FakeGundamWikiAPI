@@ -1,23 +1,25 @@
-﻿using Application.Administration.Security.Roles.Commands.CreateRole;
-using Application.Administration.Security.Roles.Commands.ToggleRole;
-using Application.Administration.Security.Roles.Commands.UpdateRole;
-using Application.Administration.Security.Roles.Queries.GetRoleById;
-using Application.Administration.Security.Roles.Queries.GetRoles;
+﻿using Application.Security.Roles.Commands.CreateRole;
+using Application.Security.Roles.Commands.ToggleRole;
+using Application.Security.Roles.Commands.UpdateRole;
+using Application.Security.Roles.Queries.GetRoleById;
+using Application.Security.Roles.Queries.GetRoles;
 
 namespace WebApi.Modules.Security;
 
 public class RolesModule : CarterModule
 {
+    public RolesModule() : base("/api/roles")
+    {
+        RequireAuthorization("SuperAdmin");
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var roles = app.MapGroup("/api/roles");
-
-        roles.MapGet("", GetRoles)
-            .RequireAuthorization();
-        roles.MapGet("/{id}", GetRolesById);
-        roles.MapPost("/create", CreateRole);
-        roles.MapPut("/update/{id}", UpdateRole);
-        roles.MapDelete("/toggle/{id}", ToggleRole);
+        app.MapGet("", GetRoles);
+        app.MapGet("/{id}", GetRolesById);
+        app.MapPost("/create", CreateRole);
+        app.MapPut("/update/{id}", UpdateRole);
+        app.MapDelete("/toggle/{id}", ToggleRole);
     }
 
     private async Task<IResult> GetRoles(ISender sender)

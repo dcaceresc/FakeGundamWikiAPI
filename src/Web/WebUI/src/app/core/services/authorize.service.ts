@@ -32,7 +32,7 @@ export class AuthorizeService {
 
 
   public login(user : UserLoginRequestCommand) {
-    return this.http.post<any>('/api/Security/Account/UserLogin',user )
+    return this.http.post<any>('/api/account/login',user )
         .pipe(map(user => {
             localStorage.setItem('user', JSON.stringify(user));
             this.userSubject.next(user);
@@ -40,7 +40,7 @@ export class AuthorizeService {
   }
 
   public adminLogin(admin : AdminLoginRequestCommand) {
-    return this.http.post<any>('/api/Security/Account/AdminLogin',admin)
+    return this.http.post<any>('/api/account/admin',admin)
         .pipe(map(user => {
             localStorage.setItem('user', JSON.stringify(user));
             this.userSubject.next(user);

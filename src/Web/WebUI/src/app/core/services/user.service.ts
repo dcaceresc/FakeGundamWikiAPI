@@ -10,22 +10,22 @@ export class UserService {
   private http = inject(HttpClient);
 
   public GetUsers() {
-    return this.http.get<UserDto[]>('/api/Security/Users/GetUsers');
+    return this.http.get<UserDto[]>('/api/users');
   }
 
   public GetUserById(id: string | null) {
-    return this.http.get<UserVM>(`/api/Security/Users/GetUserById/${id}`);
+    return this.http.get<UserVM>(`/api/users/${id}`);
   }
 
   public CreateUser(user: CreateUserCommand) {
-    return this.http.post('/api/Security/Users/CreateUser', user);
+    return this.http.post('/api/users/create', user);
   }
 
   public UpdateUser(id: string | null, user: UpdateUserCommand) {
-    return this.http.put(`/api/Security/Users/UpdateUser/${id}`, user);
+    return this.http.put(`/api/users/update/${id}`, user);
   }
 
   public ToggleUser(id: string | null) {
-    return this.http.delete(`/api/Security/Users/ToggleUser/${id}`);
+    return this.http.delete(`/api/users/toggle/${id}`);
   }
 }

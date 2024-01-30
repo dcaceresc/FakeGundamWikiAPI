@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.Universes.Commands.CreateUniverse;
-using Application.Administration.Maintainer.Universes.Commands.ToggleUniverse;
-using Application.Administration.Maintainer.Universes.Commands.UpdateUniverse;
-using Application.Administration.Maintainer.Universes.Queries.GetUniverseById;
-using Application.Administration.Maintainer.Universes.Queries.GetUniverses;
+﻿using Application.Maintainer.Universes.Commands.CreateUniverse;
+using Application.Maintainer.Universes.Commands.ToggleUniverse;
+using Application.Maintainer.Universes.Commands.UpdateUniverse;
+using Application.Maintainer.Universes.Queries.GetUniverseById;
+using Application.Maintainer.Universes.Queries.GetUniverses;
 
 namespace WebApi.Modules.Maintainer;
 

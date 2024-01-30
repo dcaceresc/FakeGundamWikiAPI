@@ -13,7 +13,6 @@ builder.Services.AddWebApiServices(builder.Configuration);
 var app = builder.Build();
 
 
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -30,7 +29,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
 app.MapCarter();
 
 app.MapFallbackToFile("/index.html");

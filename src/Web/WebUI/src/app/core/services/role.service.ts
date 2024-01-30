@@ -10,22 +10,22 @@ export class RoleService {
   private http = inject(HttpClient);
 
   public GetRoles() {
-    return this.http.get<RoleDto[]>('/api/Security/Roles/GetRoles');
+    return this.http.get<RoleDto[]>('/api/roles');
   }
 
   public GetRoleById(id: string | null) {
-    return this.http.get<RoleDto>(`/api/Security/Roles/GetRoleById/${id}`);
+    return this.http.get<RoleDto>(`/api/roles/${id}`);
   }
 
   public CreateRole(role: CreateRoleCommand){
-    return this.http.post('/api/Security/Roles/CreateRole', role);
+    return this.http.post('/api/roles/create', role);
   }
 
   public UpdateRole(id:string | null, role : UpdateRoleCommand){
-    return this.http.put(`/api/Security/Roles/UpdateRole/${id}`, role);
+    return this.http.put(`/api/roles/update/${id}`, role);
   }
 
   public ToggleRole(id:string | null){
-    return this.http.delete(`/api/Security/Roles/ToggleRole/${id}`);
+    return this.http.delete(`/api/roles/toggle/${id}`);
   }
 }

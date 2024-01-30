@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.Affiliations.Commands.CreateAffiliation;
-using Application.Administration.Maintainer.Affiliations.Commands.ToggleAffiliation;
-using Application.Administration.Maintainer.Affiliations.Commands.UpdateAffiliation;
-using Application.Administration.Maintainer.Affiliations.Queries.GetAffiliantionById;
-using Application.Administration.Maintainer.Affiliations.Queries.GetAffiliations;
+﻿using Application.Maintainer.Affiliations.Commands.CreateAffiliation;
+using Application.Maintainer.Affiliations.Commands.ToggleAffiliation;
+using Application.Maintainer.Affiliations.Commands.UpdateAffiliation;
+using Application.Maintainer.Affiliations.Queries.GetAffiliantionById;
+using Application.Maintainer.Affiliations.Queries.GetAffiliations;
 
 namespace WebApi.Modules.Maintainer;
 

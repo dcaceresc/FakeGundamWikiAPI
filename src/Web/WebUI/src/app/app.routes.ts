@@ -16,6 +16,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'login',
+    loadComponent: () => import('./features/administration/security/pages/account/user-login/user-login.component').then(m => m.UserLoginComponent)
+  },
+  {
     path: 'admin', 
     loadComponent: () => import('./features/administration/security/pages/account/admin-login/admin-login.component').then(m => m.AdminLoginComponent)
   },

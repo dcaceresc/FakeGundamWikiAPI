@@ -11,7 +11,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddWebApiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddControllers();
+        //services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
 
@@ -66,6 +66,10 @@ public static class ConfigureServices
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!)),
                         };
                     });
+
+        services.AddAuthorizationBuilder()
+            .AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"))
+            .AddPolicy("Administrator", policy => policy.RequireRole("SuperAdmin", "Administrator"));
 
         return services;
     }

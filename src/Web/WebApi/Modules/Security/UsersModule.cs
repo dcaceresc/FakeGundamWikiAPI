@@ -1,21 +1,25 @@
-﻿using Application.Administration.Security.Users.Commands.CreateUser;
-using Application.Administration.Security.Users.Commands.ToggleUser;
-using Application.Administration.Security.Users.Commands.UpdateUser;
-using Application.Administration.Security.Users.Queries.GetUserById;
-using Application.Administration.Security.Users.Queries.GetUsers;
+﻿using Application.Security.Users.Commands.CreateUser;
+using Application.Security.Users.Commands.ToggleUser;
+using Application.Security.Users.Commands.UpdateUser;
+using Application.Security.Users.Queries.GetUserById;
+using Application.Security.Users.Queries.GetUsers;
+
 namespace WebApi.Modules.Security;
 
 public class UsersModule : CarterModule
 {
+    public UsersModule()
+        : base("/api/users")
+    {
+        RequireAuthorization("Administrator");
+    }
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var users = app.MapGroup("/api/users");
-
-        users.MapGet("", GetUsers);
-        users.MapGet("/{id}", GetUsersById);
-        users.MapPost("/create", CreateUser);
-        users.MapPut("/update/{id}", UpdateUser);
-        users.MapDelete("/toggle/{id}", ToggleUser);
+        app.MapGet("", GetUsers);
+        app.MapGet("/{id}", GetUsersById);
+        app.MapPost("/create", CreateUser);
+        app.MapPut("/update/{id}", UpdateUser);
+        app.MapDelete("/toggle/{id}", ToggleUser);
     }
 
     private async Task<IResult> GetUsers(ISender sender)

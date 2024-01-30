@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.MobileSuits.Commands.CreateMobileSuit;
-using Application.Administration.Maintainer.MobileSuits.Commands.ToggleMobileSuit;
-using Application.Administration.Maintainer.MobileSuits.Commands.UpdateMobileSuit;
-using Application.Administration.Maintainer.MobileSuits.Queries.GetMobileSuitById;
-using Application.Administration.Maintainer.MobileSuits.Queries.GetMobileSuits;
+﻿using Application.Maintainer.MobileSuits.Commands.CreateMobileSuit;
+using Application.Maintainer.MobileSuits.Commands.ToggleMobileSuit;
+using Application.Maintainer.MobileSuits.Commands.UpdateMobileSuit;
+using Application.Maintainer.MobileSuits.Queries.GetMobileSuitById;
+using Application.Maintainer.MobileSuits.Queries.GetMobileSuits;
 
 namespace WebApi.Modules.Maintainer;
 

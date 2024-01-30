@@ -3,6 +3,7 @@ global using Application.Common.Interfaces;
 global using Ardalis.GuardClauses;
 global using AutoMapper;
 global using AutoMapper.QueryableExtensions;
+global using Domain.Common;
 global using Domain.Entities;
 global using FluentValidation;
 global using MediatR;

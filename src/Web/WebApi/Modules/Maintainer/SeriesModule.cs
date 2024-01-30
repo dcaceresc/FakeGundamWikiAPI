@@ -1,8 +1,8 @@
-﻿using Application.Administration.Maintainer.Series.Commands.CreateSerie;
-using Application.Administration.Maintainer.Series.Commands.ToggleSerie;
-using Application.Administration.Maintainer.Series.Commands.UpdateSerie;
-using Application.Administration.Maintainer.Series.Queries.GetSerieById;
-using Application.Administration.Maintainer.Series.Queries.GetSeries;
+﻿using Application.Maintainer.Series.Commands.CreateSerie;
+using Application.Maintainer.Series.Commands.ToggleSerie;
+using Application.Maintainer.Series.Commands.UpdateSerie;
+using Application.Maintainer.Series.Queries.GetSerieById;
+using Application.Maintainer.Series.Queries.GetSeries;
 
 namespace WebApi.Modules.Maintainer;
 
