@@ -1,10 +1,12 @@
-﻿namespace Application.Maintainer.Series.Queries.GetSeries;
+﻿using Application.Maintainer.Universes.Queries.GetUniverses;
 
-public class SerieDto
+namespace Application.Maintainer.Series.Queries.GetSeries;
+
+public class SerieDto : AuditableEntity
 {
     public int SerieId { get; set; }
     public string SerieName { get; set; } = null!;
-    public string UniverseName { get; set; } = null!;
+    public UniverseDto Universe { get; set; } = null!;
     public bool IsActive { get; set; }
 
     public class Mapping : Profile
@@ -12,7 +14,7 @@ public class SerieDto
         public Mapping()
         {
             CreateMap<Serie, SerieDto>()
-                .ForMember(d => d.UniverseName, opt => opt.MapFrom(s => s.Universe.UniverseName));
+                .ForMember(d => d.Universe, opt => opt.MapFrom(s => s.Universe));
         }
     }
 }

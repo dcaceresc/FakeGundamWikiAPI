@@ -1,6 +1,6 @@
 ﻿namespace Application.Maintainer.Universes.Queries.GetUniverses;
 
-public class UniverseDto
+public class UniverseDto : AuditableEntity
 {
     public int UniverseId { get; set; }
     public string UniverseName { get; set; } = null!;

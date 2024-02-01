@@ -9,6 +9,7 @@ public class GetSerieByIdQueryHandler(IApplicationDbContext context, IMapper map
     public async Task<SerieVM> Handle(GetSerieByIdQuery request, CancellationToken cancellationToken)
     {
         var serie = await _context.Series
+            .Include(x => x.Universe)
             .ProjectTo<SerieVM>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(s => s.SerieId == request.SerieId, cancellationToken);
 

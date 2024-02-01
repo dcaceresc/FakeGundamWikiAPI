@@ -1,6 +1,6 @@
 ﻿namespace Application.Maintainer.Affiliations.Queries.GetAffiliantionById;
 
-public class AffiliationVM
+public class AffiliationVM : AuditableEntity
 {
     public int AffiliationId { get; set; }
     public string AffiliationName { get; set; } = null!;

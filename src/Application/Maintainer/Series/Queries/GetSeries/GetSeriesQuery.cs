@@ -9,6 +9,7 @@ public class GetSeriesQueryHandler(IApplicationDbContext context, IMapper mapper
     public async Task<IList<SerieDto>> Handle(GetSeriesQuery request, CancellationToken cancellationToken)
     {
         return await _context.Series
+            .Include(x => x.Universe)
             .ProjectTo<SerieDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }

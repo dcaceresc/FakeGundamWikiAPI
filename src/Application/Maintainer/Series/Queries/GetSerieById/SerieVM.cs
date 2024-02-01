@@ -1,16 +1,19 @@
-﻿namespace Application.Maintainer.Series.Queries.GetSerieById;
+﻿using Application.Maintainer.Universes.Queries.GetUniverses;
 
-public class SerieVM
+namespace Application.Maintainer.Series.Queries.GetSerieById;
+
+public class SerieVM : AuditableEntity
 {
     public int SerieId { get; set; }
     public string SerieName { get; set; } = null!;
-    public int UniverseId { get; set; }
+    public UniverseDto Universe { get; set; } = null!;
 
     public class Mapping : Profile
     {
         public Mapping()
         {
-            CreateMap<Serie, SerieVM>();
+            CreateMap<Serie, SerieVM>()
+                .ForMember(d => d.Universe, opt => opt.MapFrom(s => s.Universe));
         }
     }
 }

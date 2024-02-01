@@ -9,6 +9,8 @@ public class GetCharactersQueryHandler(IApplicationDbContext context, IMapper ma
     public async Task<IList<CharacterDto>> Handle(GetCharactersQuery request, CancellationToken cancellationToken)
     {
         return await _context.Characters
+            .Include(x => x.CharacterAffiliations)
+            .ThenInclude(x => x.Affiliation)
             .ProjectTo<CharacterDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }

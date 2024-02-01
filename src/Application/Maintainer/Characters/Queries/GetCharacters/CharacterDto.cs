@@ -1,6 +1,8 @@
-﻿namespace Application.Maintainer.Characters.Queries.GetCharacters;
+﻿using Application.Maintainer.Affiliations.Queries.GetAffiliations;
 
-public class CharacterDto
+namespace Application.Maintainer.Characters.Queries.GetCharacters;
+
+public class CharacterDto : AuditableEntity
 {
     public int CharacterId { get; set; }
     public string Aliases { get; set; } = null!;
@@ -8,7 +10,7 @@ public class CharacterDto
     public string Classification { get; set; } = null!;
     public string BirthDate { get; set; } = null!;
     public int GenderId { get; set; }
-    public IList<string> AffiliationNames { get; set; } = null!;
+    public IList<AffiliationDto> Affiliations { get; set; } = null!;
     public bool IsActive { get; set; }
 
     public class Mapping : Profile
@@ -16,7 +18,17 @@ public class CharacterDto
         public Mapping()
         {
             CreateMap<Character, CharacterDto>()
-                .ForMember(d => d.AffiliationNames, opt => opt.MapFrom(s => s.CharacterAffiliations.Select(x => x.Affiliation.AffiliationName)));
+                .ForMember(d => d.Affiliations, opt => opt.MapFrom(s => s.CharacterAffiliations.Select(x => new AffiliationDto
+                {
+                    AffiliationId = x.AffiliationId,
+                    AffiliationName = x.Affiliation.AffiliationName,
+                    AffiliationPurpose = x.Affiliation.AffiliationPurpose,
+                    IsActive = x.Affiliation.IsActive,
+                    CreatedBy = x.Affiliation.CreatedBy,
+                    Created = x.Affiliation.Created,
+                    LastModifiedBy = x.Affiliation.LastModifiedBy,
+                    LastModified = x.Affiliation.LastModified
+                }).ToList()));
         }
     }
 }
