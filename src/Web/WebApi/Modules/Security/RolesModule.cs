@@ -17,9 +17,9 @@ public class RolesModule : CarterModule
     {
         app.MapGet("", GetRoles);
         app.MapGet("/{id}", GetRolesById);
-        app.MapPost("/create", CreateRole);
-        app.MapPut("/update/{id}", UpdateRole);
-        app.MapDelete("/toggle/{id}", ToggleRole);
+        app.MapPost("", CreateRole);
+        app.MapPut("/{id}", UpdateRole);
+        app.MapDelete("/{id}", ToggleRole);
     }
 
     private async Task<IResult> GetRoles(ISender sender)

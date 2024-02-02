@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faCircleHalfStroke, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCircleHalfStroke, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit{
   public autoIcon = faCircleHalfStroke;
   public selectedIcon = this.moonIcon;
   public githubIcon = faGithub;
+  public docsIcon = faBook;
   
 
   public ngOnInit(): void {

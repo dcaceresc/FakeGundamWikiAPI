@@ -17,9 +17,9 @@ public class UsersModule : CarterModule
     {
         app.MapGet("", GetUsers);
         app.MapGet("/{id}", GetUsersById);
-        app.MapPost("/create", CreateUser);
-        app.MapPut("/update/{id}", UpdateUser);
-        app.MapDelete("/toggle/{id}", ToggleUser);
+        app.MapPost("", CreateUser);
+        app.MapPut("/{id}", UpdateUser);
+        app.MapDelete("/{id}", ToggleUser);
     }
 
     private async Task<IResult> GetUsers(ISender sender)

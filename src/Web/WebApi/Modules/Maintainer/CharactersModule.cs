@@ -14,9 +14,9 @@ public class CharactersModule : CarterModule
 
         characters.MapGet("", GetCharacters);
         characters.MapGet("/{id}", GetCharacterById);
-        characters.MapPost("/create", CreateCharacter);
-        characters.MapPut("/update/{id}", UpdateCharacter);
-        characters.MapDelete("/toggle/{id}", ToggleCharacter);
+        characters.MapPost("", CreateCharacter);
+        characters.MapPut("/{id}", UpdateCharacter);
+        characters.MapDelete("/{id}", ToggleCharacter);
     }
 
     private async Task<IResult> GetCharacters(ISender sender)

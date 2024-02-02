@@ -14,9 +14,9 @@ public class SeriesModule : CarterModule
 
         series.MapGet("", GetSeries);
         series.MapGet("/{id}", GetSeriesById);
-        series.MapPost("/create", CreateSeries);
-        series.MapPut("/update/{id}", UpdateSeries);
-        series.MapDelete("/toggle/{id}", ToggleSeries);
+        series.MapPost("", CreateSeries);
+        series.MapPut("/{id}", UpdateSeries);
+        series.MapDelete("/{id}", ToggleSeries);
     }
 
 

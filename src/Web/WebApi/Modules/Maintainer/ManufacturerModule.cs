@@ -14,9 +14,9 @@ public class ManufacturerModule : CarterModule
 
         manufacturers.MapGet("", GetManufacturers);
         manufacturers.MapGet("/{id}", GetManufacturerById);
-        manufacturers.MapPost("/create", CreateManufacturer);
-        manufacturers.MapPut("/update/{id}", UpdateManufacturer);
-        manufacturers.MapDelete("/toggle/{id}", ToggleManufacturer);
+        manufacturers.MapPost("", CreateManufacturer);
+        manufacturers.MapPut("/{id}", UpdateManufacturer);
+        manufacturers.MapDelete("/{id}", ToggleManufacturer);
     }
 
     private async Task<IResult> GetManufacturers(ISender sender)

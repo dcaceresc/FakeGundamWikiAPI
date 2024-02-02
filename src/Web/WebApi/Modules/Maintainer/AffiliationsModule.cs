@@ -14,9 +14,9 @@ public class AffiliationsModule : CarterModule
 
         affiliants.MapGet("", GetAffiliants);
         affiliants.MapGet("/{id}", GetAffiliantById);
-        affiliants.MapPost("/create", CreateAffiliant);
-        affiliants.MapPut("/update/{id}", UpdateAffiliant);
-        affiliants.MapDelete("/toggle/{id}", ToggleAffiliant);
+        affiliants.MapPost("", CreateAffiliant);
+        affiliants.MapPut("/{id}", UpdateAffiliant);
+        affiliants.MapDelete("/{id}", ToggleAffiliant);
     }
 
     private async Task<IResult> GetAffiliants(ISender sender)

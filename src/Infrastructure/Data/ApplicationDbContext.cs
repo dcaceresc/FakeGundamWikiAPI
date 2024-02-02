@@ -172,6 +172,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
             entity.Property(e => e.LastName)
             .HasColumnType("varchar(30)");
+
+            entity.Property(e => e.Password)
+            .HasColumnType("varchar(100)");
         });
 
         builder.Entity<UserRole>(entity =>

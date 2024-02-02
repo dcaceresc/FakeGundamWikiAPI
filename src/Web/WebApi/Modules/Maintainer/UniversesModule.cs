@@ -14,9 +14,9 @@ public class UniversesModule : CarterModule
 
         universes.MapGet("", GetUniverses);
         universes.MapGet("/{id}", GetUniversesById);
-        universes.MapPost("/create", CreateUniverse);
-        universes.MapPut("/update/{id}", UpdateUniverse);
-        universes.MapDelete("/toggle/{id}", ToggleUniverse);
+        universes.MapPost("", CreateUniverse);
+        universes.MapPut("/{id}", UpdateUniverse);
+        universes.MapDelete("/{id}", ToggleUniverse);
     }
 
     private async Task<IResult> GetUniverses(ISender sender)

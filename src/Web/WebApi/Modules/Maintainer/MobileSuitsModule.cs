@@ -13,10 +13,10 @@ public class MobileSuitsModule : CarterModule
         var mobileSuits = app.MapGroup("/api/mobile-suits");
 
         mobileSuits.MapGet("", GetMobileSuits);
-        mobileSuits.MapGet("/{id:int}", GetMobileSuitById);
-        mobileSuits.MapPost("/create", CreateMobileSuit);
-        mobileSuits.MapPut("/update/{id:int}", UpdateMobileSuit);
-        mobileSuits.MapDelete("/toggle/{id:int}", ToggleMobileSuit);
+        mobileSuits.MapGet("/{id}", GetMobileSuitById);
+        mobileSuits.MapPost("", CreateMobileSuit);
+        mobileSuits.MapPut("/{id}", UpdateMobileSuit);
+        mobileSuits.MapDelete("/{id}", ToggleMobileSuit);
     }
 
     private async Task<IResult> GetMobileSuits(ISender sender)
