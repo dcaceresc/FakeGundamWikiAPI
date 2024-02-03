@@ -10,7 +10,7 @@ public class AffiliationsModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var affiliants = app.MapGroup("/api/affiliants");
+        var affiliants = app.MapGroup("/affiliants");
 
         affiliants.MapGet("", GetAffiliants);
         affiliants.MapGet("/{id}", GetAffiliantById);

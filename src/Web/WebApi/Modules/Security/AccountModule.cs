@@ -9,7 +9,7 @@ public class AccountModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var account = app.MapGroup("/api/account");
+        var account = app.MapGroup("/account");
 
         account.MapPost("/login", UserLogin);
         account.MapPost("/admin", AdminLogin);

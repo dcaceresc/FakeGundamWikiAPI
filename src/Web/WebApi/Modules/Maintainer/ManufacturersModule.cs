@@ -6,11 +6,11 @@ using Application.Maintainer.Manufacturers.Queries.GetManufacturers;
 
 namespace WebApi.Modules.Maintainer;
 
-public class ManufacturerModule : CarterModule
+public class ManufacturersModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var manufacturers = app.MapGroup("/api/manufacturers");
+        var manufacturers = app.MapGroup("/manufacturers");
 
         manufacturers.MapGet("", GetManufacturers);
         manufacturers.MapGet("/{id}", GetManufacturerById);

@@ -10,7 +10,7 @@ public class MobileSuitsModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var mobileSuits = app.MapGroup("/api/mobile-suits");
+        var mobileSuits = app.MapGroup("/mobile-suits");
 
         mobileSuits.MapGet("", GetMobileSuits);
         mobileSuits.MapGet("/{id}", GetMobileSuitById);

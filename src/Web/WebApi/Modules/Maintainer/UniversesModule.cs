@@ -10,7 +10,7 @@ public class UniversesModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var universes = app.MapGroup("/api/universes");
+        var universes = app.MapGroup("/universes");
 
         universes.MapGet("", GetUniverses);
         universes.MapGet("/{id}", GetUniversesById);

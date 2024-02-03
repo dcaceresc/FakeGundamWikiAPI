@@ -1,4 +1,4 @@
-<div class="row align-items-md-stretch mt-5">
+<div class="row align-items-md-stretch mt-5 mb-3">
     <div class="col-md-6">
         <div class="h-100 p-5 bg-body-tertiary border rounded-3">
           <h2>Fake Gundam Wiki API</h2>
@@ -11,7 +11,28 @@
     </div>
     <div class="col-md-6">
         <div class="h-100 me-3">
-            <img src="../../../assets/images/wallpaper.png">
+            <img src="../../../assets/images/wallpaper2.jpg" class="img-fluid rounded-3" width="745">
         </div>
     </div>
 </div>
+
+<h2>Example Code</h2>
+
+<div class="p bg-body-tertiary border rounded-3 mb-3">
+    <pre>
+        <code>
+            fetch('https://fakeapigundam.azurewebsites.net/mobileSuit/1')
+            .then(res=&gt;res.json())
+            .then(json=&gt;console.log(json))
+           </code> 
+    </pre>
+</div>
+
+<button class="btn btn-primary mb-3">
+    <fa-icon [icon]="tryItIcon"></fa-icon>
+    Try it
+</button>
+
+
+<app-resources/>
+<app-routes/>

@@ -10,7 +10,7 @@ public class SeriesModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var series = app.MapGroup("/api/series");
+        var series = app.MapGroup("/series");
 
         series.MapGet("", GetSeries);
         series.MapGet("/{id}", GetSeriesById);

@@ -10,7 +10,7 @@ public class CharactersModule : CarterModule
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var characters = app.MapGroup("api/characters");
+        var characters = app.MapGroup("/characters");
 
         characters.MapGet("", GetCharacters);
         characters.MapGet("/{id}", GetCharacterById);
