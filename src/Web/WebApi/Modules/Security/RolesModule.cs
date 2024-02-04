@@ -8,7 +8,7 @@ namespace WebApi.Modules.Security;
 
 public class RolesModule : CarterModule
 {
-    public RolesModule() : base("/roles")
+    public RolesModule() : base("/api/roles")
     {
         RequireAuthorization("SuperAdmin");
     }

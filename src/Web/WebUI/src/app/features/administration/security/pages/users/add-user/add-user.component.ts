@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UserService } from '../../../../../../core/services/user.service';
 import { RoleService } from '../../../../../../core/services/role.service';
-import { RoleDto } from '../../../../../../core/models/administration/role.model';
+import { RoleDto } from '../../../../../../core/models/security/role.model';
 
 @Component({
   selector: 'app-add-user',

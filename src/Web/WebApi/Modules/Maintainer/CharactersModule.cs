@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class CharactersModule : CarterModule
 {
+    public CharactersModule() : base("api/characters")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var characters = app.MapGroup("/characters");
-
-        characters.MapGet("", GetCharacters);
-        characters.MapGet("/{id}", GetCharacterById);
-        characters.MapPost("", CreateCharacter);
-        characters.MapPut("/{id}", UpdateCharacter);
-        characters.MapDelete("/{id}", ToggleCharacter);
+        app.MapGet("", GetCharacters);
+        app.MapGet("/{id}", GetCharacterById);
+        app.MapPost("", CreateCharacter);
+        app.MapPut("/{id}", UpdateCharacter);
+        app.MapDelete("/{id}", ToggleCharacter);
     }
 
     private async Task<IResult> GetCharacters(ISender sender)

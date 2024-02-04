@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class SeriesModule : CarterModule
 {
+    public SeriesModule() : base("api/series")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var series = app.MapGroup("/series");
-
-        series.MapGet("", GetSeries);
-        series.MapGet("/{id}", GetSeriesById);
-        series.MapPost("", CreateSeries);
-        series.MapPut("/{id}", UpdateSeries);
-        series.MapDelete("/{id}", ToggleSeries);
+        app.MapGet("", GetSeries);
+        app.MapGet("/{id}", GetSeriesById);
+        app.MapPost("", CreateSeries);
+        app.MapPut("/{id}", UpdateSeries);
+        app.MapDelete("/{id}", ToggleSeries);
     }
 
 

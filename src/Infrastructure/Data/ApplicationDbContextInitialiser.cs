@@ -59,7 +59,7 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
         await SeedRoleAsync(Roles.SuperAdmin);
         await SeedRoleAsync(Roles.Administrator);
 
-        await SeedUserAsync("dcaceresc", "Diego", "Cáceres", "SuperAdmin","12345");
+        await SeedUserAsync("dcaceresc", "Diego", "Cáceres", "SuperAdmin", "12345");
 
         await _context.SaveChangesAsync();
     }
@@ -73,11 +73,11 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
         }
     }
 
-    private async Task SeedUserAsync(string userName, string firstName, string lastName,string password ,string roleName)
+    private async Task SeedUserAsync(string userName, string firstName, string lastName, string password, string roleName)
     {
         if (!_context.Users.Any(x => x.UserName == userName))
         {
-            var user = User.Create(userName, firstName, lastName,password);
+            var user = User.Create(userName, firstName, lastName, password);
 
             await _context.Users.AddAsync(user);
 

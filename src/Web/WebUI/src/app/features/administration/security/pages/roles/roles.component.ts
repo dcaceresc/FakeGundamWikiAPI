@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TableComponent } from '../../../../../shared/components/table/table.component';
 import { RoleService } from '../../../../../core/services/role.service';
-import { RoleDto } from '../../../../../core/models/administration/role.model';
+import { RoleDto } from '../../../../../core/models/security/role.model';
 
 @Component({
   selector: 'app-roles',

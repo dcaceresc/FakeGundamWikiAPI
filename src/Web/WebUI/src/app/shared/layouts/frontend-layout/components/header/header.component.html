@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark navbar-expand-lg border-bottom border-body">
 
-    <div class="container">
-      <a class="navbar-brand" href="#">Fake Gundam Wiki API</a>
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Fake Gundam Wiki API</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,7 +11,7 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/dcaceresc/FakeApiGundam" target="_blank">
+            <a class="nav-link" routerLink="/docs">
               <fa-icon [icon]="docsIcon"></fa-icon> Docs
             </a>
           </li>
@@ -29,17 +29,17 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" (click)="toggleTheme('light')" href="#">
+                <a class="dropdown-item" (click)="toggleTheme('light')" >
                   <fa-icon [icon]="sunIcon"></fa-icon> Light
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" (click)="toggleTheme('dark')" href="#">
+                <a class="dropdown-item" (click)="toggleTheme('dark')" >
                   <fa-icon [icon]="moonIcon"></fa-icon> Dark
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" (click)="toggleTheme('auto')" href="#">
+                <a class="dropdown-item" (click)="toggleTheme('auto')">
                   <fa-icon [icon]="autoIcon"></fa-icon> Auto
                 </a>
               </li>

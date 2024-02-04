@@ -7,6 +7,7 @@ public record UpdateMobileSuitCommand : IRequest
     public string MobileSuitFirstSeen { get; init; } = null!;
     public string MobileSuitLastSeen { get; init; } = null!;
     public int ManufacturerId { get; init; }
+    public int SerieId { get; init; }
     public IList<int> PilotIds { get; init; } = null!;
 
 }
@@ -21,7 +22,7 @@ public class UpdateMobileSuitCommandHandler(IApplicationDbContext context) : IRe
 
         Guard.Against.NotFound(request.MobileSuitId, mobileSuit);
 
-        mobileSuit.Update(request.MobileSuitName, mobileSuit.MobileSuitUnitType, request.MobileSuitFirstSeen, request.MobileSuitLastSeen, request.ManufacturerId);
+        mobileSuit.Update(request.MobileSuitName, mobileSuit.MobileSuitUnitType, request.MobileSuitFirstSeen, request.MobileSuitLastSeen, request.ManufacturerId, request.SerieId);
 
         var oldMobileSuitPilots = await _context.MobileSuitPilots.Where(x => x.MobileSuitId == request.MobileSuitId).ToListAsync(cancellationToken);
 

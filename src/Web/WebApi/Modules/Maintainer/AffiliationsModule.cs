@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class AffiliationsModule : CarterModule
 {
+    public AffiliationsModule() : base("api/affiliations")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var affiliants = app.MapGroup("/affiliants");
-
-        affiliants.MapGet("", GetAffiliants);
-        affiliants.MapGet("/{id}", GetAffiliantById);
-        affiliants.MapPost("", CreateAffiliant);
-        affiliants.MapPut("/{id}", UpdateAffiliant);
-        affiliants.MapDelete("/{id}", ToggleAffiliant);
+        app.MapGet("", GetAffiliants);
+        app.MapGet("/{id}", GetAffiliantById);
+        app.MapPost("", CreateAffiliant);
+        app.MapPut("/{id}", UpdateAffiliant);
+        app.MapDelete("/{id}", ToggleAffiliant);
     }
 
     private async Task<IResult> GetAffiliants(ISender sender)

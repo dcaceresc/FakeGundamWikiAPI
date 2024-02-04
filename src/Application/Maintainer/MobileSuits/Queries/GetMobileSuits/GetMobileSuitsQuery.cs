@@ -11,8 +11,10 @@ public class GetMobileSuitsQueryHandler(IApplicationDbContext context, IMapper m
     {
         return await _context.MobileSuits
             .Include(x => x.Manufacturer)
+            .Include(x => x.Serie)
             .Include(x => x.MobileSuitPilots)
             .ThenInclude(x => x.Character)
+            .ThenInclude(x => x.CharacterAffiliations)
             .ProjectTo<MobileSuitDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }

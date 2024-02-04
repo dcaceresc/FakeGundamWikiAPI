@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook, faCircleHalfStroke, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +7,7 @@ import { faBook, faCircleHalfStroke, faMoon, faSun } from '@fortawesome/free-sol
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule,RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

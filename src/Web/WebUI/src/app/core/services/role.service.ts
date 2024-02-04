@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { CreateRoleCommand, RoleDto, UpdateRoleCommand } from '../models/administration/role.model';
+import { CreateRoleCommand, RoleDto, UpdateRoleCommand } from '../models/security/role.model';
 
 @Injectable({
   providedIn: 'root'

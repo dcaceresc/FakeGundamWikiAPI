@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { AdminLoginRequestCommand, UserLoginRequestCommand, UserTokenResponse } from '../models/administration/account.model';
+import { AdminLoginRequestCommand, UserLoginRequestCommand, UserTokenResponse } from '../models/security/account.model';
 
 @Injectable({
   providedIn: 'root'

@@ -9,8 +9,11 @@ public class GetMobileSuitByIdQueryHandler(IApplicationDbContext context, IMappe
     public async Task<MobileSuitVM> Handle(GetMobileSuitByIdQuery request, CancellationToken cancellationToken)
     {
         var mobileSuit = await _context.MobileSuits
+            .Include(x => x.Manufacturer)
+            .Include(x => x.Serie)
             .Include(x => x.MobileSuitPilots)
             .ThenInclude(x => x.Character)
+            .ThenInclude(x => x.CharacterAffiliations)
             .ProjectTo<MobileSuitVM>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(x => x.MobileSuitId == request.MobileSuitId, cancellationToken);
 

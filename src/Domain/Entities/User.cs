@@ -22,7 +22,7 @@ public class User : AuditableEntity
 
     public static User Create(string userName, string firstName, string lastName, string password)
     {
-        return new User(userName, firstName, lastName,password);
+        return new User(userName, firstName, lastName, password);
     }
 
     public void Update(string userName, string firstName, string lastName)

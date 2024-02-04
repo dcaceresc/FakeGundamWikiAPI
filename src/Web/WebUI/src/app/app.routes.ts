@@ -7,11 +7,15 @@ const routes: Routes = [
   { 
     path: '', 
     loadComponent: () => import('./shared/layouts/frontend-layout/frontend-layout.component').then(m => m.FrontendLayoutComponent),
-    pathMatch: 'full',
     children: [
       {
         path: '',
         loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        pathMatch: 'full',
+      },
+      {
+        path: 'docs',
+        loadComponent: () => import('./features/docs/docs.component').then(m => m.DocsComponent),
       }
     ]
   },

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UserService } from '../../../../../../core/services/user.service';
 import { RoleService } from '../../../../../../core/services/role.service';
-import { RoleDto } from '../../../../../../core/models/administration/role.model';
+import { RoleDto } from '../../../../../../core/models/security/role.model';
 
 @Component({
   selector: 'app-update-user',

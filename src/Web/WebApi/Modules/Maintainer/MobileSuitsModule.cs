@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class MobileSuitsModule : CarterModule
 {
+    public MobileSuitsModule() : base("api/mobile-suits")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var mobileSuits = app.MapGroup("/mobile-suits");
-
-        mobileSuits.MapGet("", GetMobileSuits);
-        mobileSuits.MapGet("/{id}", GetMobileSuitById);
-        mobileSuits.MapPost("", CreateMobileSuit);
-        mobileSuits.MapPut("/{id}", UpdateMobileSuit);
-        mobileSuits.MapDelete("/{id}", ToggleMobileSuit);
+        app.MapGet("", GetMobileSuits);
+        app.MapGet("/{id}", GetMobileSuitById);
+        app.MapPost("", CreateMobileSuit);
+        app.MapPut("/{id}", UpdateMobileSuit);
+        app.MapDelete("/{id}", ToggleMobileSuit);
     }
 
     private async Task<IResult> GetMobileSuits(ISender sender)

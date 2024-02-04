@@ -15,7 +15,7 @@ public class CreateUserCommandHandler(IApplicationDbContext applicationDbContext
 
     public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = User.Create(request.UserName, request.FirstName, request.LastName,request.Password);
+        var user = User.Create(request.UserName, request.FirstName, request.LastName, request.Password);
 
         _applicationDbContext.Users.Add(user);
 

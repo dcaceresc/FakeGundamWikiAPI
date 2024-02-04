@@ -6,6 +6,7 @@ public record CreateMobileSuitCommand : IRequest<int>
     public string MobileSuitFirstSeen { get; init; } = null!;
     public string MobileSuitLastSeen { get; init; } = null!;
     public int ManufacturerId { get; init; }
+    public int SerieId { get; init; }
     public IList<int> PilotIds { get; init; } = null!;
 }
 
@@ -15,7 +16,7 @@ public class CreateMobileSuitCommandHandler(IApplicationDbContext context) : IRe
 
     public async Task<int> Handle(CreateMobileSuitCommand request, CancellationToken cancellationToken)
     {
-        var mobileSuit = MobileSuit.Create(request.MobileSuitName, request.MobileSuitUnitType, request.MobileSuitFirstSeen, request.MobileSuitLastSeen, request.ManufacturerId);
+        var mobileSuit = MobileSuit.Create(request.MobileSuitName, request.MobileSuitUnitType, request.MobileSuitFirstSeen, request.MobileSuitLastSeen, request.ManufacturerId, request.SerieId);
 
         _context.MobileSuits.Add(mobileSuit);
 

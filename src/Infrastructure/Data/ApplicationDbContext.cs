@@ -45,13 +45,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.CharacterName)
             .HasColumnType("varchar(100)");
 
-            entity.Property(e => e.Aliases)
+            entity.Property(e => e.CharacterAliases)
             .HasColumnType("varchar(200)");
 
-            entity.Property(e => e.Classification)
+            entity.Property(e => e.CharacterClassification)
             .HasColumnType("varchar(100)");
 
-            entity.Property(e => e.BirthDate)
+            entity.Property(e => e.CharacterBirthDate)
             .HasColumnType("varchar(50)");
         });
 

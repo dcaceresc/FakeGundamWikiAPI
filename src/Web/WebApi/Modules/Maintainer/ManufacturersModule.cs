@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class ManufacturersModule : CarterModule
 {
+    public ManufacturersModule() : base("api/manufacturers")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var manufacturers = app.MapGroup("/manufacturers");
-
-        manufacturers.MapGet("", GetManufacturers);
-        manufacturers.MapGet("/{id}", GetManufacturerById);
-        manufacturers.MapPost("", CreateManufacturer);
-        manufacturers.MapPut("/{id}", UpdateManufacturer);
-        manufacturers.MapDelete("/{id}", ToggleManufacturer);
+        app.MapGet("", GetManufacturers);
+        app.MapGet("/{id}", GetManufacturerById);
+        app.MapPost("", CreateManufacturer);
+        app.MapPut("/{id}", UpdateManufacturer);
+        app.MapDelete("/{id}", ToggleManufacturer);
     }
 
     private async Task<IResult> GetManufacturers(ISender sender)

@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TableComponent } from '../../../../../shared/components/table/table.component';
 import { UserService } from '../../../../../core/services/user.service';
-import { UserDto } from '../../../../../core/models/administration/user.model';
+import { UserDto } from '../../../../../core/models/security/user.model';
 
 
 @Component({

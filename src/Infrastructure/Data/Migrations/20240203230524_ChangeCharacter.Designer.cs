@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240203230524_ChangeCharacter")]
+    partial class ChangeCharacter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,17 +218,12 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("SerieId")
-                        .HasColumnType("int");
-
                     b.HasKey("MobileSuitId");
 
                     b.HasIndex("ManufacturerId");
 
                     b.HasIndex("MobileSuitName")
                         .IsUnique();
-
-                    b.HasIndex("SerieId");
 
                     b.ToTable("MobileSuits");
                 });
@@ -508,15 +506,7 @@ namespace Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Serie", "Serie")
-                        .WithMany()
-                        .HasForeignKey("SerieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Manufacturer");
-
-                    b.Navigation("Serie");
                 });
 
             modelBuilder.Entity("Domain.Entities.MobileSuitPilot", b =>

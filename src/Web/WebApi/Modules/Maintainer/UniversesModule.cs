@@ -8,15 +8,18 @@ namespace WebApi.Modules.Maintainer;
 
 public class UniversesModule : CarterModule
 {
+    public UniversesModule() : base("api/universes")
+    {
+        
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var universes = app.MapGroup("/universes");
-
-        universes.MapGet("", GetUniverses);
-        universes.MapGet("/{id}", GetUniversesById);
-        universes.MapPost("", CreateUniverse);
-        universes.MapPut("/{id}", UpdateUniverse);
-        universes.MapDelete("/{id}", ToggleUniverse);
+        app.MapGet("", GetUniverses);
+        app.MapGet("/{id}", GetUniversesById);
+        app.MapPost("", CreateUniverse);
+        app.MapPut("/{id}", UpdateUniverse);
+        app.MapDelete("/{id}", ToggleUniverse);
     }
 
     private async Task<IResult> GetUniverses(ISender sender)

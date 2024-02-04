@@ -7,13 +7,16 @@ namespace WebApi.Modules.Security;
 
 public class AccountModule : CarterModule
 {
+    public AccountModule() : base("/api/account")
+    {
+
+    }
+
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        var account = app.MapGroup("/account");
-
-        account.MapPost("/login", UserLogin);
-        account.MapPost("/admin", AdminLogin);
-        account.MapPost("/refreshToken", RefreshToken);
+        app.MapPost("/login", UserLogin);
+        app.MapPost("/admin", AdminLogin);
+        app.MapPost("/refreshToken", RefreshToken);
     }
 
     private async Task<IResult> RefreshToken(UpdateRefreshTokenCommand command, ISender sender)

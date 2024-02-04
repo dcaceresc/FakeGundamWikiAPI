@@ -8,8 +8,7 @@ namespace WebApi.Modules.Security;
 
 public class UsersModule : CarterModule
 {
-    public UsersModule()
-        : base("/users")
+    public UsersModule() : base("/api/users")
     {
         RequireAuthorization("Administrator");
     }
