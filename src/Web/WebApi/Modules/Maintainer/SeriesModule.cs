@@ -10,7 +10,7 @@ public class SeriesModule : CarterModule
 {
     public SeriesModule() : base("api/series")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

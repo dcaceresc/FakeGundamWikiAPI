@@ -10,7 +10,7 @@ public class CharactersModule : CarterModule
 {
     public CharactersModule() : base("api/characters")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

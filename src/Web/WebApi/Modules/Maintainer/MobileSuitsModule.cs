@@ -10,7 +10,7 @@ public class MobileSuitsModule : CarterModule
 {
     public MobileSuitsModule() : base("api/mobile-suits")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

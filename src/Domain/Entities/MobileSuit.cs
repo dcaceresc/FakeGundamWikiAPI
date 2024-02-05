@@ -9,6 +9,7 @@ public class MobileSuit : AuditableEntity
         MobileSuitLastSeen = mobileSuitLastSeen;
         ManufacturerId = manufacturerId;
         SerieId = serieId;
+        IsActive = true;
     }
 
     public int MobileSuitId { get; set; }

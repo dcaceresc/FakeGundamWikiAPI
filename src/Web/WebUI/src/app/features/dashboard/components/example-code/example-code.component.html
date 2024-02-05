@@ -15,10 +15,16 @@
         Try it
     </button>
 
-    <div class="bg-body-tertiary border rounded-3 mb-3" [class.d-none]="!showSecondDiv">
-        <pre>
-            <code>
+    @defer () {
+        <div class="bg-body-tertiary border rounded-3 mb-3" [class.d-none]="!showSecondDiv">
+            <pre>
+                <code>
 {{mobileSuit() | json}}
-            </code>
-        </pre>
-    </div>
+                </code>
+            </pre>
+        </div>
+    }@placeholder {
+        <div class="bg-body-tertiary border rounded-3 mb-3">
+            <fa-icon [icon]="spinnerIcon"></fa-icon>
+        </div>
+    }

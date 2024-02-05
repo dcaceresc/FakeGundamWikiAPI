@@ -10,7 +10,7 @@ public class ManufacturersModule : CarterModule
 {
     public ManufacturersModule() : base("api/manufacturers")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

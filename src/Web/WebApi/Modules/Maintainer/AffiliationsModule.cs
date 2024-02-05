@@ -10,7 +10,7 @@ public class AffiliationsModule : CarterModule
 {
     public AffiliationsModule() : base("api/affiliations")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

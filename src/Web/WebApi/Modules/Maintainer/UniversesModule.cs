@@ -10,7 +10,7 @@ public class UniversesModule : CarterModule
 {
     public UniversesModule() : base("api/universes")
     {
-        
+
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)

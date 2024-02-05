@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { MobileSuitVM } from '../../../../core/models/maintainer/mobile-suit.model';
 import { MobileSuitsServiceService } from '../../../../core/services/mobile-suits-service.service';
 
@@ -20,11 +20,15 @@ export class ExampleCodeComponent {
   private mobileSuitsService = inject(MobileSuitsServiceService);
 
   public tryItIcon = faPlay;
+  public spinnerIcon = faSpinner;
   showSecondDiv: boolean = false
-  mobileSuit = signal<MobileSuitVM | null>(null);
+  mobileSuitInterface!: MobileSuitVM;
+  mobileSuit = signal<MobileSuitVM>(this.mobileSuitInterface);
 
   public onTryItClick(): void {
     this.showSecondDiv = true;
-    this.mobileSuitsService.getMobileSuit('3').subscribe(mobileSuit => this.mobileSuit.set(mobileSuit));
+    this.mobileSuitsService.getMobileSuit('1').subscribe({
+      next: (mobileSuit) => this.mobileSuit.set(mobileSuit)
+    });
   }
 }
