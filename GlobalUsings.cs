@@ -1,0 +1,9 @@
+﻿global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
+global using FakeGundamWikiAPI.Common;
+global using FakeGundamWikiAPI.Data;
+global using FakeGundamWikiAPI.Data.Entities;
+global using FakeGundamWikiAPI.Services;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Carter;

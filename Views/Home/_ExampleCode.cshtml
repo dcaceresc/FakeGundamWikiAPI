@@ -1,0 +1,23 @@
+﻿<h2>Example Code</h2>
+
+<div class="bg-body-tertiary border rounded-3 mb-3">
+    <pre>
+    <code>
+    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
+    .then(res=&gt;res.json())
+    .then(json=&gt;console.log(json))
+        </code> 
+    </pre>
+</div>
+
+<button class="btn btn-primary mb-3" onclick="getMobileSuit()">
+    <i class="bi bi-play-fill"></i>
+    Try it
+</button>
+
+<div class="bg-body-tertiary border rounded-3 mb-3">
+    <pre>
+        <code id="exampleCode">
+        </code>
+    </pre>
+</div>

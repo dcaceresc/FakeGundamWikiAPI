@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Fake Gundam Wiki API";
+}
+
+<div class="row align-items-md-stretch mt-5 mb-3">
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <h2>Fake Gundam Wiki API</h2>
+            <p>Fake API for testing and prototyping.</p>
+            <a class="btn btn-danger btn-lg" asp-controller="Docs" asp-action="Index">
+                <i class="bi bi-journal-text"></i> Docs
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-2 rounded-3">
+            <img src="./images/wallpaper.jpg" class="img-fluid rounded-3">
+        </div>
+    </div>
+</div>
+
+<partial name="_ExampleCode" />
+
+<partial name="_Resources" />
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function getMobileSuit() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "api/mobile-suits", true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    
+                    var json = JSON.parse(xhr.responseText);
+                    var code = JSON.stringify(json, null, 4);
+                    document.getElementById("exampleCode").innerHTML = code;
+                }
+            };
+
+            xhr.send();
+        }
+
+
+
+    </script>
+}
