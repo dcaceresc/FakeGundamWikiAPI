@@ -17,7 +17,7 @@ public class MobileSuitsModule() : CarterModule("api/mobile-suits")
             .ProjectTo<MobileSuitResponse>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
-         return Results.Ok(mobileSuits);
+        return Results.Ok(mobileSuits);
     }
 
     public async Task<IResult> GetMobileSuitById(int id, ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)

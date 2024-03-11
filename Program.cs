@@ -1,7 +1,5 @@
-using Carter;
 using FakeGundamWikiAPI.Data.Interceptor;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

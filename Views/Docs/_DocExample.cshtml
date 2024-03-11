@@ -1,0 +1,28 @@
+﻿@model ExampleCodeViewModel
+
+<div class="bg-body-tertiary border rounded-3 mb-3">
+    <pre>
+    <code>
+        @Model.Code
+    </code> 
+    </pre>
+</div>
+
+@{
+    var toggleButton = "toggleButton_" + Model.Id;
+    var outputContainer = "outputContainer_" + Model.Id;
+}
+
+<button id="@toggleButton" class="btn btn-primary mb-3" onclick="toggleOutput('@Model.Id')">
+    <i class="bi bi-eye"></i>
+    Show ouput
+</button>
+
+<div id="@outputContainer" class="bg-body-tertiary border rounded-3 mb-3" hidden>
+    <pre>
+        <code>
+            @Model.JsonResponse
+        </code>
+    </pre>
+</div>
+

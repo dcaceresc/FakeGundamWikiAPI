@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FakeGundamWikiAPI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FakeGundamWikiAPI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    
+    <partial name="_Header.cshtml" />
+
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
+                    <a asp-controller="Docs" asp-action="Index" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline"><i class="bi bi-book"></i> Documentation</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi bi-person-check"></i> <span class="ms-1 d-none d-sm-inline">Auth</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="Affiliations" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Affiliations</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="Characters" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi bi-person-video3"></i> <span class="ms-1 d-none d-sm-inline">Characters</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="Manufacturers" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-building-gear"></i> <span class="ms-1 d-none d-sm-inline">Manufacturers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="MobileSuits" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi bi-robot"></i> <span class="ms-1 d-none d-sm-inline">Mobile Suits</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="Series" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi bi-tv"></i> <span class="ms-1 d-none d-sm-inline">Series</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Docs" asp-action="Universes" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Universes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-person"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col py-3">
+                @RenderBody()
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - FakeGundamWikiAPI
+        </div>
+    </footer>
+    <script>
+        function toggleOutput(instanceId) {
+
+            console.log(instanceId);
+
+            var outputContainer = document.getElementById('outputContainer_' + instanceId);
+            var toggleButton = document.getElementById('toggleButton_' + instanceId);
+
+            if (outputContainer.hidden) {
+                // Mostrar el contenedor de salida
+                outputContainer.hidden = false;
+
+                // Cambiar el icono y el texto del botón
+                toggleButton.innerHTML = '<i class="bi bi-eye-slash"></i> Hide Output';
+                toggleButton.classList.remove('btn-primary');
+                toggleButton.classList.add('btn-danger');
+            } else {
+                // Ocultar el contenedor de salida
+                outputContainer.hidden = true;
+
+                // Cambiar el icono y el texto del botón
+                toggleButton.innerHTML = '<i class="bi bi-eye"></i> Show Output';
+                toggleButton.classList.remove('btn-danger');
+                toggleButton.classList.add('btn-primary');
+            }
+        }
+    </script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

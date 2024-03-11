@@ -28,14 +28,20 @@
     <script type="text/javascript">
 
         function getMobileSuit() {
+
+            console.log("getMobileSuit");
+
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "api/mobile-suits", true);
+            xhr.open("GET", "api/mobile-suits/1", true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     
                     var json = JSON.parse(xhr.responseText);
                     var code = JSON.stringify(json, null, 4);
+
+                    console.log(code);
+
                     document.getElementById("exampleCode").innerHTML = code;
                 }
             };

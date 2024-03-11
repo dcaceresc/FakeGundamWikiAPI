@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Characters";
+    Layout = "_LayoutDocs";
+}
+
+<h1>
+    <i class="bi bi-person-video3"></i> Characters
+</h1>
+
+<hr />
+
+<h3>Get all characters</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacters","","")' />
+
+<hr />
+
+<h3>Get a single character</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacter","","")' />
+
+<hr />
+
+<h3>Create a new character</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateCharacter","","")' />
+
+<hr />
+
+<h3>Update a character</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateCharacter","","")' />
+
+<hr />
+
+<h3>Delete a character</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteCharacter","","")' />
