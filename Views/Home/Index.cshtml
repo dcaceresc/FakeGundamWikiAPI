@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-6">
         <div class="h-100 p-2 rounded-3">
-            <img src="./images/wallpaper.jpg" class="img-fluid rounded-3">
+            <img src="images/wallpaper.jpg" class="img-fluid rounded-3">
         </div>
     </div>
 </div>
@@ -29,8 +29,6 @@
 
         function getMobileSuit() {
 
-            console.log("getMobileSuit");
-
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "api/mobile-suits/1", true);
 
@@ -40,7 +38,7 @@
                     var json = JSON.parse(xhr.responseText);
                     var code = JSON.stringify(json, null, 4);
 
-                    console.log(code);
+                    document.getElementById("ExampleCodeDiv").removeAttribute("hidden");
 
                     document.getElementById("exampleCode").innerHTML = code;
                 }

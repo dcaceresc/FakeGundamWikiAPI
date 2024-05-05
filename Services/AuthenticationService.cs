@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -38,5 +40,30 @@ public class AuthenticationService(IHttpContextAccessor httpContextAccessor, ICo
         var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
         return tokenString;
+    }
+
+    public async Task CreateCookie(string uname, string[]? roles)
+    {
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.NameIdentifier, uname)
+        };
+
+        if (roles != null)
+        {
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+        }
+
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        var authProperties = new AuthenticationProperties
+        {
+            ExpiresUtc = DateTime.UtcNow.AddMinutes(120),
+        };
+
+        await _httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
     }
 }

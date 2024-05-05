@@ -1,6 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Affiliations";
     Layout = "_LayoutDocs";
+
+
+    var GetAffiliations = @"
+    fetch('http://dcaceresc.somee.com/FakeGundamWikiAPI/api/affiliations')
+    .then(res=&gt;res.json())
+    .then(json=&gt;console.log(json))";
+
+    var GetAffiliationById = @"
+    fetch('http://dcaceresc.somee.com/FakeGundamWikiAPI/api/affiliations/1')
+    .then(res=&gt;res.json())
+    .then(json=&gt;console.log(json))";
+
+    var CreateAffiliation = @"
+    fetch('http://dcaceresc.somee.com/FakeGundamWikiAPI/api/affiliations', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'affiliationName': 'Earth Federation Forces',
+            'affiliationPurpose': 'Military Organization',
+            'isActive': true
+        })
+    })
+    .then(res=&gt;res.json())
+    .then(json=&gt;console.log(json))";
 }
 
 <h1>
@@ -11,19 +37,19 @@
 
 <h3>Get all affiliations</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetAffiliations","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetAffiliations",GetAffiliations,"")' />
 
 <hr />
 
 <h3>Get a single affiliation</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetAffiliation","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetAffiliation",GetAffiliationById,"")' />
 
 <hr />
 
 <h3>Create a new affiliation</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateAffiliation","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateAffiliation",CreateAffiliation,"")' />
 
 <hr />
 

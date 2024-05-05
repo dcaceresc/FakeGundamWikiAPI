@@ -5,6 +5,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Affiliation> Affiliations => Set<Affiliation>();
     public DbSet<Character> Characters => Set<Character>();
     public DbSet<CharacterAffiliation> CharacterAffiliations => Set<CharacterAffiliation>();
+    public DbSet<Example> Examples => Set<Example>();
+    public DbSet<ExampleType> ExampleTypes => Set<ExampleType>();
     public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
     public DbSet<MobileSuit> MobileSuits => Set<MobileSuit>();
     public DbSet<MobileSuitPilot> MobileSuitPilots => Set<MobileSuitPilot>();
@@ -62,6 +64,31 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.HasOne(e => e.Affiliation)
             .WithMany(e => e.CharacterAffiliations)
             .HasForeignKey(e => e.AffiliationId);
+        });
+
+        builder.Entity<Example>(entity =>
+        {
+            entity.HasKey(e => e.ExampleId);
+
+            entity.Property(e => e.ExampleName)
+            .HasColumnType("varchar(100)");
+
+            entity.Property(e => e.ExampleCode)
+            .HasColumnType("varchar(1000)");
+
+            entity.Property(e => e.ExampleResult)
+            .HasColumnType("varchar(1000)");
+        });
+
+        builder.Entity<ExampleType>(entity =>
+        {
+            entity.HasKey(e => e.ExampleTypeId);
+
+            entity.HasIndex(e => e.ExampleTypeName)
+            .IsUnique();
+
+            entity.Property(e => e.ExampleTypeName)
+            .HasColumnType("varchar(100)");
         });
 
         builder.Entity<Manufacturer>(entity =>
