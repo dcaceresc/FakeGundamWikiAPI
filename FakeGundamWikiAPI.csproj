@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Maintainer\Models\ExampleTypes\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

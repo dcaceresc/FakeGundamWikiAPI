@@ -1,0 +1,34 @@
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model ExampleVM
+@{
+    Layout = null;
+}
+
+<form asp-action="Edit">
+
+    <div class="mb-3">
+        <label asp-for="ExampleName" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="ExampleName">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ExampleCode" class="form-label">Code</label>
+        <textarea type="text" class="form-control" asp-for="ExampleCode" style="height:150px;resize:none;"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ExampleResult" class="form-label">Code</label>
+        <textarea type="text" class="form-control" asp-for="ExampleResult" style="height:150px;resize:none;"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ExampleTypeId" class="form-label">Type</label>
+        <select asp-for="ExampleTypeId" class="form-select" asp-items="@ViewBag.ExampleTypes"></select>
+    </div>
+
+
+    <div class="form-group float-end">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>

@@ -2,7 +2,7 @@
 
 public class ExampleCodeViewModel
 {
-    private ExampleCodeViewModel(string id, string code, string jsonResponse)
+    private ExampleCodeViewModel(string id, string code, string? jsonResponse)
     {
         Id = id;
         Code = code;
@@ -12,7 +12,7 @@ public class ExampleCodeViewModel
 
     public string Id { get; private set; } = null!;
     public string Code { get; private set; } = null!;
-    public string JsonResponse { get; private set; } = null!;
+    public string? JsonResponse { get; private set; }
 
 
     public static ExampleCodeViewModel Create(string id,string code, string jsonResponse)

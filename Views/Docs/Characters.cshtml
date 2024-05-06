@@ -1,149 +1,8 @@
-﻿@{
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
     ViewData["Title"] = "Characters";
     Layout = "_LayoutDocs";
-
-    #region GetCharacters
-
-    var GetCharactersCode = @"
-    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))";
-
-    var GetCharactersResult = @"
-    [
-      {
-        ""characterId"": 1,
-        ""characterName"": ""The White Devil"",
-        ""characterAliases"": ""Amuro Ray"",
-        ""characterClassification"": ""Newtype"",
-        ""characterBirthDate"": ""November 4,0063 (U.C.)"",
-        ""characterGenderId"": 2,
-        ""affiliations"": [
-          {
-            ""affiliationId"": 1,
-            ""affiliationName"": ""Earth Federation Forces"",
-            ""affiliationPurpose"": ""Military Organization"",
-            ""isActive"": true,
-            ""created"": ""2024-03-09T14:00:01.112454"",
-            ""createdBy"": null,
-            ""lastModified"": ""2024-03-09T14:00:01.1124566"",
-            ""lastModifiedBy"": null
-          },
-          {
-            ""affiliationId"": 2,
-            ""affiliationName"": ""Anti Earth Union Group"",
-            ""affiliationPurpose"": ""Resistance Movement"",
-            ""isActive"": true,
-            ""created"": ""2024-03-09T14:00:18.1360086"",
-            ""createdBy"": null,
-            ""lastModified"": ""2024-03-09T14:00:18.1360111"",
-            ""lastModifiedBy"": null
-          },
-          {
-            ""affiliationId"": 3,
-            ""affiliationName"": ""Londo Bell"",
-            ""affiliationPurpose"": ""Special Operations Forces"",
-            ""isActive"": true,
-            ""created"": ""2024-03-09T14:00:40.8591331"",
-            ""createdBy"": null,
-            ""lastModified"": ""2024-03-09T14:00:40.8591356"",
-            ""lastModifiedBy"": null
-          }
-        ],
-        ""isActive"": true,
-        ""created"": ""2024-03-09T14:01:37.1185214"",
-        ""createdBy"": null,
-        ""lastModified"": ""2024-03-09T14:01:37.1185238"",
-        ""lastModifiedBy"": null
-      }
-    ]"; 
-
-
-    #endregion
-
-    #region GetCharacter
-
-    var GetCharacterCode = @"
-    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))";
-    var GetCharacterResult = @"
-    {
-      ""characterId"": 1,
-      ""characterName"": ""The White Devil"",
-      ""characterAliases"": ""Amuro Ray"",
-      ""characterClassification"": ""Newtype"",
-      ""characterBirthDate"": ""November 4,0063 (U.C.)"",
-      ""characterGenderId"": 2,
-      ""affiliations"": [
-        {
-          ""affiliationId"": 1,
-          ""affiliationName"": ""Earth Federation Forces"",
-          ""affiliationPurpose"": ""Military Organization"",
-          ""isActive"": true,
-          ""created"": ""2024-03-09T14:00:01.112454"",
-          ""createdBy"": null,
-          ""lastModified"": ""2024-03-09T14:00:01.1124566"",
-          ""lastModifiedBy"": null
-        },
-        {
-          ""affiliationId"": 2,
-          ""affiliationName"": ""Anti Earth Union Group"",
-          ""affiliationPurpose"": ""Resistance Movement"",
-          ""isActive"": true,
-          ""created"": ""2024-03-09T14:00:18.1360086"",
-          ""createdBy"": null,
-          ""lastModified"": ""2024-03-09T14:00:18.1360111"",
-          ""lastModifiedBy"": null
-        },
-        {
-          ""affiliationId"": 3,
-          ""affiliationName"": ""Londo Bell"",
-          ""affiliationPurpose"": ""Special Operations Forces"",
-          ""isActive"": true,
-          ""created"": ""2024-03-09T14:00:40.8591331"",
-          ""createdBy"": null,
-          ""lastModified"": ""2024-03-09T14:00:40.8591356"",
-          ""lastModifiedBy"": null
-        }
-      ],
-      ""isActive"": true,
-      ""created"": ""2024-03-09T14:01:37.1185214"",
-      ""createdBy"": null,
-      ""lastModified"": ""2024-03-09T14:01:37.1185238"",
-      ""lastModifiedBy"": null
-    }";
-    #endregion
-
-    #region CreateCharacter
-
-    var CreateCharacterCode = @"
-    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))";
-
-
-    #endregion
-
-    #region UpdateCharacter
-
-    var UpdateCharacterCode = @"
-    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))";
-
-    #endregion
-
-    #region DeleteCharacter
-
-    var DeleteCharacterCode = @"
-    fetch('https://fakeapigundam.azurewebsites.net/mobile-suit/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))";
-
-
-    #endregion
-    
 }
 
 <h1>
@@ -154,28 +13,38 @@
 
 <h3>Get all characters</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacters",GetCharactersCode,GetCharactersResult)' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacters",
+Model.Where(x => x.ExampleName == "GetCharacters").First().ExampleCode,
+Model.Where(x => x.ExampleName == "GetCharacters").First().ExampleResult!)' />
 
 <hr />
 
 <h3>Get a single character</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacter",GetCharacterCode,GetCharacterResult)' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetCharacterById",
+Model.Where(x => x.ExampleName == "GetCharacterById").First().ExampleCode,
+Model.Where(x => x.ExampleName == "GetCharacterById").First().ExampleResult!)' />
 
 <hr />
 
 <h3>Create a new character</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateCharacter",CreateCharacterCode,"")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateCharacter",
+Model.Where(x => x.ExampleName == "CreateCharacter").First().ExampleCode,
+Model.Where(x => x.ExampleName == "CreateCharacter").First().ExampleResult!)' />
 
 <hr />
 
 <h3>Update a character</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateCharacter",UpdateCharacterCode,"")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateCharacter",
+Model.Where(x => x.ExampleName == "UpdateCharacter").First().ExampleCode,
+Model.Where(x => x.ExampleName == "UpdateCharacter").First().ExampleResult!)' />
 
 <hr />
 
-<h3>Delete a character</h3>
+<h3>Active/Inactive a character</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteCharacter",DeleteCharacterCode,"")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleCharacter",
+Model.Where(x => x.ExampleName == "ToggleCharacter").First().ExampleCode,
+Model.Where(x => x.ExampleName == "ToggleCharacter").First().ExampleResult!)' />

@@ -1,6 +1,6 @@
 ﻿namespace FakeGundamWikiAPI.Data.Entities;
 
-public class ExampleType
+public class ExampleType : AuditableEntity
 {
     public int ExampleTypeId { get; set; }
     public string ExampleTypeName { get; set; } = null!;

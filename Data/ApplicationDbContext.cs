@@ -77,7 +77,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasColumnType("varchar(1000)");
 
             entity.Property(e => e.ExampleResult)
-            .HasColumnType("varchar(1000)");
+            .HasColumnType("varchar(5000)");
         });
 
         builder.Entity<ExampleType>(entity =>
@@ -216,6 +216,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         ConfigureAuditableEntity<Affiliation>(builder);
         ConfigureAuditableEntity<Character>(builder);
         ConfigureAuditableEntity<CharacterAffiliation>(builder);
+        ConfigureAuditableEntity<Example>(builder);
+        ConfigureAuditableEntity<ExampleType>(builder);
         ConfigureAuditableEntity<Manufacturer>(builder);
         ConfigureAuditableEntity<MobileSuit>(builder);
         ConfigureAuditableEntity<MobileSuitPilot>(builder);

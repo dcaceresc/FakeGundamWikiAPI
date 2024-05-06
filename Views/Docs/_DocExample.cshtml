@@ -13,16 +13,21 @@
     var outputContainer = "outputContainer_" + Model.Id;
 }
 
-<button id="@toggleButton" class="btn btn-primary mb-3" onclick="toggleOutput('@Model.Id')">
-    <i class="bi bi-eye"></i>
-    Show ouput
-</button>
+@if (Model.JsonResponse != null)
+{
+    <button id="@toggleButton" class="btn btn-primary mb-3" onclick="toggleOutput('@Model.Id')">
+        <i class="bi bi-eye"></i>
+        Show ouput
+    </button>
 
-<div id="@outputContainer" class="bg-body-tertiary border rounded-3 mb-3" hidden>
-    <pre>
+    <div id="@outputContainer" class="bg-body-tertiary border rounded-3 mb-3" hidden>
+        <pre>
         <code>
-            @Model.JsonResponse
-        </code>
-    </pre>
-</div>
+@Model.JsonResponse
+            </code>
+        </pre>
+    </div>
+
+}
+
 

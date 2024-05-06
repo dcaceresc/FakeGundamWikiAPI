@@ -9,6 +9,49 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  */
 
+
+function modalOpen(route, titulo, size, xclose, scroll) {
+    const modalSize = document.getElementById('modalSize');
+    modalSize.className = 'modal-dialog ' + size;
+
+    const modalTitle = document.getElementById('modalTitle');
+    modalTitle.innerHTML = titulo;
+
+    const modalHeader = document.querySelector('.modal-header');
+    if (xclose) {
+        const btnClose = document.createElement('button');
+        btnClose.setAttribute('type', 'button');
+        btnClose.setAttribute('id', 'btnClose');
+        btnClose.setAttribute('class', 'btn-close btn-close-white');
+        btnClose.setAttribute('data-bs-dismiss', 'modal');
+        btnClose.setAttribute('aria-label', 'Close');
+        modalHeader.appendChild(btnClose);
+    }
+
+    if (scroll) {
+        modalSize.classList.add('modal-dialog-scrollable');
+    }
+
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = ''; // Limpiar el contenido previo
+    fetch(route)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            modalBody.innerHTML = data;
+            const modal = new bootstrap.Modal(document.getElementById('modal'));
+            modal.show();
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
 (() => {
     'use strict'
 
@@ -83,3 +126,5 @@
             })
     })
 })()
+
+
