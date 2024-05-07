@@ -1,12 +1,14 @@
-﻿namespace FakeGundamWikiAPI.Models;
+﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples;
+
+namespace FakeGundamWikiAPI.Models;
 
 public class ExampleCodeViewModel
 {
-    private ExampleCodeViewModel(string id, string code, string? jsonResponse)
+    private ExampleCodeViewModel(string id, IList<ExampleDto> examples)
     {
         Id = id;
-        Code = code;
-        JsonResponse = jsonResponse;
+        Code = examples.Where(x => x.ExampleName == id).First().ExampleCode;
+        JsonResponse = examples.Where(x => x.ExampleName == id).First().ExampleResult;
     }
 
 
@@ -15,8 +17,8 @@ public class ExampleCodeViewModel
     public string? JsonResponse { get; private set; }
 
 
-    public static ExampleCodeViewModel Create(string id,string code, string jsonResponse)
+    public static ExampleCodeViewModel Create(string id, IList<ExampleDto> examples)
     {
-        return new ExampleCodeViewModel(id ,code, jsonResponse);
+        return new ExampleCodeViewModel(id, examples);
     }
 }

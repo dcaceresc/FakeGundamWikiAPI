@@ -14,15 +14,22 @@ public class ExamplesController(ApplicationDbContext context, IMapper mapper) : 
     private readonly IMapper _mapper = mapper;
 
     [HttpGet("")]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
-        var model = await _context
+        var allItems = await _context
             .Examples
             .AsNoTracking()
             .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
             .ToListAsync();
 
-        return View(model);
+        var pagedItems = allItems.Skip((page - 1) * 10).Take(10).ToList();
+        var totalPages = (int)Math.Ceiling((double)allItems.Count / 10);
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.PageSizes = 10;
+
+        return View(pagedItems);
     }
 
     [HttpGet("Create")]

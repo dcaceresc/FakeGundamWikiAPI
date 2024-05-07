@@ -1,5 +1,4 @@
 ﻿using FakeGundamWikiAPI.Areas.Security.Models.Account;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 
@@ -16,7 +15,7 @@ public class AccountController(ApplicationDbContext context, AuthenticationServi
         // agrega un if si esta logueado ir a home
 
         if (User.Identity!.IsAuthenticated)
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
 
         return View();
     }
@@ -40,6 +39,6 @@ public class AccountController(ApplicationDbContext context, AuthenticationServi
 
         await _authenticationService.CreateCookie(admin.UserName, ["Administrator"]);
 
-        return RedirectToAction("Index","Examples", new { area = "Maintainer" });
+        return RedirectToAction("Index", "Examples", new { area = "Maintainer" });
     }
 }

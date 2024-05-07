@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
     ViewData["Title"] = "Universes";
     Layout = "_LayoutDocs";
 }
@@ -11,28 +13,28 @@
 
 <h3>Get all universes</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUniverses","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUniverses",Model)' />
 
 <hr />
 
 <h3>Get a single universe</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUniverse","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUniverseById",Model)' />
 
 <hr />
 
 <h3>Create a new universe</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateUniverse","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateUniverse",Model)' />
 
 <hr />
 
 <h3>Update a universe</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateUniverse","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateUniverse",Model)' />
 
 <hr />
 
-<h3>Delete a universe</h3>
+<h3>Active/Inactive a universe</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteUniverse","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleUniverse",Model)' />

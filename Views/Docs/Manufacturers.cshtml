@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
     ViewData["Title"] = "Manufacturers";
     Layout = "_LayoutDocs";
 }
@@ -11,28 +13,28 @@
 
 <h3>Get all manufacturers</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetManufacturers","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetManufacturers",Model)' />
 
 <hr />
 
 <h3>Get a single manufacturer</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetManufacturer","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetManufacturerById",Model)' />
 
 <hr />
 
 <h3>Create a new manufacturer</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateManufacturer","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateManufacturer",Model)' />
 
 <hr />
 
 <h3>Update a manufacturer</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateManufacturer","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateManufacturer",Model)' />
 
 <hr />
 
-<h3>Delete a manufacturer</h3>
+<h3>Active/Inactive a manufacturer</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteManufacturer","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleManufacturer",Model)' />

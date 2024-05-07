@@ -75,3 +75,23 @@
         </div>
     </nav>
 </header>
+
+@if (User.IsInRole("Administrator"))
+{
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Administrador</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav ml-auto">
+                <li nav-item>
+                    <a class="nav-link" asp-area="Maintainer" asp-controller="Examples" asp-action="Index">Examples</a>
+                </li>
+                <li nav-item>
+                    <a class="nav-link" asp-area="Maintainer" asp-controller="ExampleTypes" asp-action="Index">ExampleTypes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}

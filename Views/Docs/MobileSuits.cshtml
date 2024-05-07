@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
     ViewData["Title"] = "Mobile Suits";
     Layout = "_LayoutDocs";
 }
@@ -11,28 +13,28 @@
 
 <h3>Get all mobile suits</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetMobileSuits","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetMobileSuits",Model)' />
 
 <hr />
 
 <h3>Get a single mobile suit</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetMobileSuit","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetMobileSuitById",Model)' />
 
 <hr />
 
 <h3>Create a new mobile suit</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateMobileSuit","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateMobileSuit",Model)' />
 
 <hr />
 
 <h3>Update a mobile suit</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateMobileSuit","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateMobileSuit",Model)' />
 
 <hr />
 
 <h3>Delete a mobile suit</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteMobileSuit","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleMobileSuit",Model)' />

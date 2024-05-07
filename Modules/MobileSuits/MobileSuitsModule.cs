@@ -57,7 +57,7 @@ public class MobileSuitsModule() : CarterModule("api/mobile-suits")
         if (request.MobileSuitId != id)
             return Results.BadRequest("The mobile suit id in the request does not match the id in the route");
 
-        var mobileSuit = await context.MobileSuits.FindAsync(new object[] { id }, cancellationToken);
+        var mobileSuit = await context.MobileSuits.FindAsync([id], cancellationToken);
 
         if (mobileSuit == null)
             return Results.NotFound();
@@ -97,7 +97,7 @@ public class MobileSuitsModule() : CarterModule("api/mobile-suits")
 
     public async Task<IResult> ToggleMobileSuit(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var mobileSuit = await context.MobileSuits.FindAsync(new object[] { id }, cancellationToken);
+        var mobileSuit = await context.MobileSuits.FindAsync([id], cancellationToken);
 
         if (mobileSuit == null)
             return Results.NotFound();

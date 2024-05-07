@@ -48,6 +48,11 @@
                             </a>
                         </li>
                         <li>
+                            <a asp-controller="Docs" asp-action="Roles" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi bi-person-fill-gear"></i> <span class="ms-1 d-none d-sm-inline">Roles</span>
+                            </a>
+                        </li>
+                        <li>
                             <a asp-controller="Docs" asp-action="Series" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi bi-tv"></i> <span class="ms-1 d-none d-sm-inline">Series</span>
                             </a>
@@ -58,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a asp-controller="Docs" asp-action="Users" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-person"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
                             </a>
                         </li>
@@ -81,8 +86,6 @@
     </footer>
     <script>
         function toggleOutput(instanceId) {
-
-            console.log(instanceId);
 
             var outputContainer = document.getElementById('outputContainer_' + instanceId);
             var toggleButton = document.getElementById('toggleButton_' + instanceId);

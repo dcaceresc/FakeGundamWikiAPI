@@ -1,0 +1,40 @@
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
+    Layout = "_LayoutDocs";
+    ViewData["Title"] = "Users";
+}
+
+<h1>
+    <i class="bi bi-person"></i> Users
+</h1>
+
+<hr />
+
+<h3>Get all users</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUsers",Model)' />
+
+<hr />
+
+<h3>Get a single user</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetUserById",Model)' />
+
+<hr />
+
+<h3>Create a new user</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateUser",Model)' />
+
+<hr />
+
+<h3>Update a user</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateUser",Model)' />
+
+<hr />
+
+<h3>Active/Inactive a user</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleUser",Model)' />

@@ -18,7 +18,7 @@ public class DocsController(ApplicationDbContext context, IMapper mapper) : Cont
             .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
             .Where(x => x.ExampleTypeName == "Affiliation")
             .ToListAsync();
-        
+
         return View(model);
     }
 
@@ -41,7 +41,7 @@ public class DocsController(ApplicationDbContext context, IMapper mapper) : Cont
             .Where(x => x.ExampleTypeName == "Manufacturer")
             .ToList();
 
-        return View();
+        return View(model);
     }
 
     public IActionResult MobileSuits()
@@ -52,17 +52,51 @@ public class DocsController(ApplicationDbContext context, IMapper mapper) : Cont
             .Where(x => x.ExampleTypeName == "MobileSuit")
             .ToList();
 
-        return View();
+        return View(model);
+    }
+
+    public IActionResult Roles()
+    {
+        var model = _context
+            .Examples
+            .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
+            .Where(x => x.ExampleTypeName == "Role")
+            .ToList();
+
+        return View(model);
     }
 
     public IActionResult Series()
     {
-        return View();
+        var model = _context
+          .Examples
+          .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
+          .Where(x => x.ExampleTypeName == "Serie")
+          .ToList();
+
+        return View(model);
     }
 
     public IActionResult Universes()
     {
-        return View();
+        var model = _context
+            .Examples
+            .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
+            .Where(x => x.ExampleTypeName == "Universe")
+            .ToList();
+
+        return View(model);
+    }
+
+    public IActionResult Users()
+    {
+        var model = _context
+            .Examples
+            .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
+            .Where(x => x.ExampleTypeName == "User")
+            .ToList();
+
+        return View(model);
     }
 
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
     ViewData["Title"] = "Series";
     Layout = "_LayoutDocs";
 }
@@ -11,28 +13,28 @@
 
 <h3 >Get all series</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetSeries","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetSeries",Model)' />
 
 <hr />
 
 <h3>Get a single serie</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetSerie","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetSerieById",Model)' />
 
 <hr />
 
 <h3>Create a new serie</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateSerie","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateSerie",Model)' />
 
 <hr />
 
 <h3>Update a serie</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateSerie","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateSerie",Model)' />
 
 <hr />
 
 <h3>Delete a serie</h3>
 
-<partial name="_DocExample" model='ExampleCodeViewModel.Create("DeleteSerie","","")' />
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleSerie",Model)' />

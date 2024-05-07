@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace FakeGundamWikiAPI.Areas.Security.Controllers;
+﻿namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 public class UsersController : Controller
 {
     public IActionResult Index()

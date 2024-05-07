@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using FakeGundamWikiAPI.Areas.Maintainer.Models.ExampleTypes;
+﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.ExampleTypes;
 using Microsoft.AspNetCore.Authorization;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
@@ -88,7 +87,7 @@ public class ExampleTypesController(ApplicationDbContext context, IMapper mapper
     public async Task<IActionResult> Toggle(int id)
     {
         var entity = _context.ExampleTypes.Find(id);
-        
+
         if (entity == null)
             return NotFound();
 

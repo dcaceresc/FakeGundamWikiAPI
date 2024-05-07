@@ -18,10 +18,10 @@ public class AuthModule() : CarterModule("api/auth")
         if (user == null)
             return Results.NotFound();
 
-        if (user.Password == request.Password) 
+        if (user.Password == request.Password)
             return Results.Unauthorized();
 
-        var token = authenticationService.CreateAccessToken(user.UserName,user.UserRoles.Select(x => x.Role.RoleName).ToList());
+        var token = authenticationService.CreateAccessToken(user.UserName, user.UserRoles.Select(x => x.Role.RoleName).ToList());
 
         return Results.Ok(token);
     }

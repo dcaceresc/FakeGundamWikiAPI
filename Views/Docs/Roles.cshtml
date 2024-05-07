@@ -1,0 +1,40 @@
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
+    ViewData["Title"] = "Roles";
+    Layout = "_LayoutDocs";
+}
+
+<h1>
+    <i class="bi bi-tv"></i> Roles
+</h1>
+
+<hr />
+
+<h3>Get all roles</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetRoles",Model)' />
+
+<hr />
+
+<h3>Get a single role</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("GetRoleById",Model)' />
+
+<hr />
+
+<h3>Create a new role</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("CreateRole",Model)' />
+
+<hr />
+
+<h3>Update a role</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("UpdateRole",Model)' />
+
+<hr />
+
+<h3>Active/Inactive a role</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("ToggleRole",Model)' />

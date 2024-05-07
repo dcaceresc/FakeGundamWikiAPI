@@ -49,7 +49,7 @@ public class ManufacturersModule() : CarterModule("api/manufacturers")
         if (request.ManufacturerId != id)
             return Results.BadRequest("The manufacturer id in the request does not match the id in the route");
 
-        var manufacturer = await context.Manufacturers.FindAsync(new object[] { id }, cancellationToken);
+        var manufacturer = await context.Manufacturers.FindAsync([id], cancellationToken);
 
         if (manufacturer == null)
             return Results.NotFound();
@@ -63,7 +63,7 @@ public class ManufacturersModule() : CarterModule("api/manufacturers")
 
     public async Task<IResult> ToggleManufacturer(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var manufacturer = await context.Manufacturers.FindAsync(new object[] { id }, cancellationToken);
+        var manufacturer = await context.Manufacturers.FindAsync([id], cancellationToken);
 
         if (manufacturer == null)
             return Results.NotFound();
