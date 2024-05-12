@@ -1,6 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Docs";
+﻿@using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples
+@model IList<ExampleDto>
+@{
+    ViewData["Title"] = "Auth";
     Layout = "_LayoutDocs";
 }
 
 
+<h1>
+    <i class="bi bi-person-check"></i> Auth
+</h1>
+
+<hr />
+
+<h3>Login</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("Login",Model)' />
+
+<br />
+
+<h3>Refresh Token</h3>
+
+<partial name="_DocExample" model='ExampleCodeViewModel.Create("RefreshToken",Model)' />

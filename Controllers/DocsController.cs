@@ -6,9 +6,15 @@ public class DocsController(ApplicationDbContext context, IMapper mapper) : Cont
     private readonly ApplicationDbContext _context = context;
     private readonly IMapper _mapper = mapper;
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var model = await _context.
+            Examples
+            .ProjectTo<ExampleDto>(_mapper.ConfigurationProvider)
+            .Where(x => x.ExampleTypeName == "Auth")
+            .ToListAsync();
+
+        return View(model);
     }
 
     public async Task<IActionResult> Affiliations()

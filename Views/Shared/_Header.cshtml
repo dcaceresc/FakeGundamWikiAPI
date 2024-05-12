@@ -78,20 +78,47 @@
 
 @if (User.IsInRole("Administrator"))
 {
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Administrador</h5>
+    <div class="offcanvas offcanvas-end bg-primary navbar-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header" data-bs-theme="dark" style="border-bottom: 1px solid white;margin-top: 10px;">
+            <h5 class="offcanvas-title text-white" id="offcanvasRightLabel">ADMINISTRACIÓN</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="navbar-nav ml-auto">
-                <li nav-item>
-                    <a class="nav-link" asp-area="Maintainer" asp-controller="Examples" asp-action="Index">Examples</a>
-                </li>
-                <li nav-item>
-                    <a class="nav-link" asp-area="Maintainer" asp-controller="ExampleTypes" asp-action="Index">ExampleTypes</a>
-                </li>
-            </ul>
+            <div class="mb-3">
+                <h5 class="mb-3">Gestion de Usuarios y Permisos</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item ">
+                        <a class="nav-link" asp-area="Security" asp-controller="Users" asp-action="Index">
+                            <i class="bi bi-person"></i>
+                            Usuarios del Sistema
+                            <i class="float-end fa fa-chevron-right"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item ">
+                        <a class="nav-link" asp-area="Security" asp-controller="Roles" asp-action="Index">
+                            <i class="bi bi-person-gear"></i>
+                            Permisos del Sistema
+                            <i class="float-end fa fa-chevron-right"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <h5 class="mb-3">Mantenedores</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="nav-link" asp-area="Maintainer" asp-controller="Examples" asp-action="Index">Examples</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="nav-link" asp-area="Maintainer" asp-controller="ExampleTypes" asp-action="Index">ExampleTypes</a>
+                    </li>
+                </ul>
+
+            </div>
         </div>
     </div>
 }
