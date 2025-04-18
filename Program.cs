@@ -20,7 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
 {
     options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FakeGundamWikiAPI"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("FakeGundamWikiAPI"));
 });
 
 builder.Services.AddScoped<ApplicationDbContextInitialiser>();

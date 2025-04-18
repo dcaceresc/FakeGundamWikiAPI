@@ -3,7 +3,6 @@ using System;
 using FakeGundamWikiAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -12,26 +11,20 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FakeGundamWikiAPI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240208225252_InitialCreate")]
+    [Migration("20250418210712_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.15");
 
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.Affiliation", b =>
                 {
                     b.Property<int>("AffiliationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AffiliationId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("AffiliationName")
                         .IsRequired()
@@ -42,16 +35,16 @@ namespace FakeGundamWikiAPI.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -68,9 +61,7 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("CharacterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CharacterAliases")
                         .IsRequired()
@@ -85,23 +76,23 @@ namespace FakeGundamWikiAPI.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("CharacterGenderId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -117,19 +108,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.CharacterAffiliation", b =>
                 {
                     b.Property<int>("CharacterId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("AffiliationId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -141,25 +132,98 @@ namespace FakeGundamWikiAPI.Data.Migrations
                     b.ToTable("CharacterAffiliations");
                 });
 
+            modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.Example", b =>
+                {
+                    b.Property<int>("ExampleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("ExampleCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<string>("ExampleName")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ExampleResult")
+                        .HasColumnType("varchar(5000)");
+
+                    b.Property<int>("ExampleTypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("ExampleId");
+
+                    b.HasIndex("ExampleTypeId");
+
+                    b.ToTable("Examples");
+                });
+
+            modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.ExampleType", b =>
+                {
+                    b.Property<int>("ExampleTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("ExampleTypeName")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("ExampleTypeId");
+
+                    b.HasIndex("ExampleTypeName")
+                        .IsUnique();
+
+                    b.ToTable("ExampleTypes");
+                });
+
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.Manufacturer", b =>
                 {
                     b.Property<int>("ManufacturerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManufacturerId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -180,27 +244,25 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("MobileSuitId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MobileSuitId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<int>("ManufacturerId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("MobileSuitFirstSeen")
                         .IsRequired()
@@ -219,7 +281,7 @@ namespace FakeGundamWikiAPI.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("SerieId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("MobileSuitId");
 
@@ -236,19 +298,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.MobileSuitPilot", b =>
                 {
                     b.Property<int>("CharacterId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MobileSuitId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -264,34 +326,32 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("RefreshTokenId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RefreshTokenId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<DateTime>("RefreshTokenExpiration")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RefreshTokenValue")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<bool>("Used")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("RefreshTokenId");
 
@@ -304,21 +364,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -339,21 +397,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("SerieId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SerieId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -363,7 +419,7 @@ namespace FakeGundamWikiAPI.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("UniverseId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("SerieId");
 
@@ -379,21 +435,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("UniverseId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniverseId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -414,12 +468,10 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
@@ -429,10 +481,10 @@ namespace FakeGundamWikiAPI.Data.Migrations
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -460,19 +512,19 @@ namespace FakeGundamWikiAPI.Data.Migrations
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.UserRole", b =>
                 {
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(30)");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(30)");
@@ -501,6 +553,17 @@ namespace FakeGundamWikiAPI.Data.Migrations
                     b.Navigation("Affiliation");
 
                     b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.Example", b =>
+                {
+                    b.HasOne("FakeGundamWikiAPI.Data.Entities.ExampleType", "ExampleType")
+                        .WithMany("Examples")
+                        .HasForeignKey("ExampleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExampleType");
                 });
 
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.MobileSuit", b =>
@@ -592,6 +655,11 @@ namespace FakeGundamWikiAPI.Data.Migrations
                     b.Navigation("CharacterAffiliations");
 
                     b.Navigation("MobileSuitPilots");
+                });
+
+            modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.ExampleType", b =>
+                {
+                    b.Navigation("Examples");
                 });
 
             modelBuilder.Entity("FakeGundamWikiAPI.Data.Entities.Manufacturer", b =>

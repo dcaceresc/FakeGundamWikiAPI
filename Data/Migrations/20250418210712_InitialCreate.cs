@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,14 +15,14 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "Affiliations",
                 columns: table => new
                 {
-                    AffiliationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AffiliationId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     AffiliationName = table.Column<string>(type: "varchar(100)", nullable: false),
                     AffiliationPurpose = table.Column<string>(type: "varchar(200)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -33,17 +34,17 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "Characters",
                 columns: table => new
                 {
-                    CharacterId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     CharacterAliases = table.Column<string>(type: "varchar(200)", nullable: false),
                     CharacterName = table.Column<string>(type: "varchar(100)", nullable: false),
                     CharacterClassification = table.Column<string>(type: "varchar(100)", nullable: false),
                     CharacterBirthDate = table.Column<string>(type: "varchar(50)", nullable: false),
-                    CharacterGenderId = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CharacterGenderId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -52,16 +53,34 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ExampleTypes",
+                columns: table => new
+                {
+                    ExampleTypeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ExampleTypeName = table.Column<string>(type: "varchar(100)", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExampleTypes", x => x.ExampleTypeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Manufacturers",
                 columns: table => new
                 {
-                    ManufacturerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ManufacturerId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ManufacturerName = table.Column<string>(type: "varchar(100)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -73,13 +92,13 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     RoleName = table.Column<string>(type: "varchar(30)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -91,13 +110,13 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "Universes",
                 columns: table => new
                 {
-                    UniverseId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UniverseId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UniverseName = table.Column<string>(type: "varchar(100)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -109,16 +128,16 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserName = table.Column<string>(type: "varchar(30)", nullable: false),
                     FirstName = table.Column<string>(type: "varchar(30)", nullable: false),
                     LastName = table.Column<string>(type: "varchar(30)", nullable: false),
                     Password = table.Column<string>(type: "varchar(100)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -130,11 +149,11 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "CharacterAffiliations",
                 columns: table => new
                 {
-                    CharacterId = table.Column<int>(type: "int", nullable: false),
-                    AffiliationId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CharacterId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AffiliationId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -155,17 +174,44 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Examples",
+                columns: table => new
+                {
+                    ExampleId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ExampleName = table.Column<string>(type: "varchar(100)", nullable: false),
+                    ExampleCode = table.Column<string>(type: "varchar(1000)", nullable: false),
+                    ExampleResult = table.Column<string>(type: "varchar(5000)", nullable: true),
+                    ExampleTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Examples", x => x.ExampleId);
+                    table.ForeignKey(
+                        name: "FK_Examples_ExampleTypes_ExampleTypeId",
+                        column: x => x.ExampleTypeId,
+                        principalTable: "ExampleTypes",
+                        principalColumn: "ExampleTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Series",
                 columns: table => new
                 {
-                    SerieId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SerieId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     SerieName = table.Column<string>(type: "varchar(100)", nullable: false),
-                    UniverseId = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UniverseId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -183,15 +229,15 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "RefreshTokens",
                 columns: table => new
                 {
-                    RefreshTokenId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RefreshTokenId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     RefreshTokenValue = table.Column<string>(type: "varchar(32)", nullable: false),
-                    RefreshTokenExpiration = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Used = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RefreshTokenExpiration = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Used = table.Column<bool>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -209,11 +255,11 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "UserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RoleId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -237,18 +283,18 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "MobileSuits",
                 columns: table => new
                 {
-                    MobileSuitId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MobileSuitId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     MobileSuitName = table.Column<string>(type: "varchar(100)", nullable: false),
                     MobileSuitUnitType = table.Column<string>(type: "varchar(100)", nullable: false),
                     MobileSuitFirstSeen = table.Column<string>(type: "varchar(50)", nullable: false),
                     MobileSuitLastSeen = table.Column<string>(type: "varchar(50)", nullable: false),
-                    ManufacturerId = table.Column<int>(type: "int", nullable: false),
-                    SerieId = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ManufacturerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SerieId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -272,11 +318,11 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "MobileSuitPilots",
                 columns: table => new
                 {
-                    MobileSuitId = table.Column<int>(type: "int", nullable: false),
-                    CharacterId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MobileSuitId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CharacterId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -311,6 +357,17 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "IX_Characters_CharacterName",
                 table: "Characters",
                 column: "CharacterName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Examples_ExampleTypeId",
+                table: "Examples",
+                column: "ExampleTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExampleTypes_ExampleTypeName",
+                table: "ExampleTypes",
+                column: "ExampleTypeName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -387,6 +444,9 @@ namespace FakeGundamWikiAPI.Data.Migrations
                 name: "CharacterAffiliations");
 
             migrationBuilder.DropTable(
+                name: "Examples");
+
+            migrationBuilder.DropTable(
                 name: "MobileSuitPilots");
 
             migrationBuilder.DropTable(
@@ -397,6 +457,9 @@ namespace FakeGundamWikiAPI.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Affiliations");
+
+            migrationBuilder.DropTable(
+                name: "ExampleTypes");
 
             migrationBuilder.DropTable(
                 name: "Characters");
