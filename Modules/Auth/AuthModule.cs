@@ -13,10 +13,15 @@ public class AuthModule() : CarterModule("api/auth")
         var user = await context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.UserName == request.Username && u.Password == request.Password, cancellationToken);
+            .FirstOrDefaultAsync(u => u.UserName == request.Username, cancellationToken);
 
         if (user == null)
             return Results.NotFound();
+
+        var isValid = authenticationService.VerifyPassword(request.Password, user.HashPassword);
+
+        if (!isValid)
+            return Results.Unauthorized();
 
 
         var refreshToken = Data.Entities.RefreshToken.Create(user.UserId);

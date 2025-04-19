@@ -1,5 +1,6 @@
-﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.ExampleTypes;
+﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Configurations;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 
@@ -7,21 +8,19 @@ namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 [ApiExplorerSettings(IgnoreApi = true)]
 [Route("Maintainer/[controller]")]
 [Authorize(Roles = "Administrator")]
-public class ExampleTypesController(ApplicationDbContext context, IMapper mapper) : Controller
+public class ConfigurationsController(ApplicationDbContext context, IMapper mapper) : Controller
 {
     private readonly ApplicationDbContext _context = context;
     private readonly IMapper _mapper = mapper;
 
-    [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var model = _context
-            .ExampleTypes
+        var configurations = await _context.Configurations
             .AsNoTracking()
-            .ProjectTo<ExampleTypeDto>(_mapper.ConfigurationProvider)
-            .ToList();
+            .ProjectTo<ConfigurationDto>(_mapper.ConfigurationProvider)
+            .ToListAsync();
 
-        return View(model);
+        return View(configurations);
     }
 
     [HttpGet("Create")]
@@ -32,21 +31,16 @@ public class ExampleTypesController(ApplicationDbContext context, IMapper mapper
 
     [HttpPost("Create")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(CreateExampleTypeRequest model)
+
+    public async Task<IActionResult> Create(CreateConfigurationRequest model)
     {
         if (ModelState.IsValid)
         {
-            var entity = new ExampleType
-            {
-                ExampleTypeName = model.ExampleTypeName,
-                IsActive = true
-            };
-
+            var entity = Configuration.Create(model.ConfigurationName,model.ConfigurationValue);
             _context.Add(entity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         return View(model);
     }
 
@@ -54,9 +48,9 @@ public class ExampleTypesController(ApplicationDbContext context, IMapper mapper
     public IActionResult Edit(int id)
     {
         var entity = _context
-            .ExampleTypes
-            .ProjectTo<ExampleTypeVM>(_mapper.ConfigurationProvider)
-            .FirstOrDefault(x => x.ExampleTypeId == id);
+            .Configurations
+            .ProjectTo<ConfigurationVM>(_mapper.ConfigurationProvider)
+            .FirstOrDefault(x => x.ConfigurationId == id);
 
         if (entity == null)
             return NotFound();
@@ -66,35 +60,33 @@ public class ExampleTypesController(ApplicationDbContext context, IMapper mapper
 
     [HttpPost("Edit/{id}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, EditExampleTypeRequest model)
+    public async Task<IActionResult> Edit(int id, UpdateConfigurationRequest model)
     {
         if (ModelState.IsValid)
         {
-            var entity = _context.ExampleTypes.Find(id);
+            var entity = await _context.Configurations.FindAsync(id);
 
             if (entity == null)
                 return NotFound();
 
-            entity.ExampleTypeName = model.ExampleTypeName;
+            entity.Update(model.ConfigurationName, model.ConfigurationValue);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         return View(model);
     }
-
 
     [HttpGet("Toggle/{id}")]
     public async Task<IActionResult> Toggle(int id)
     {
-        var entity = _context.ExampleTypes.Find(id);
+        var entity = await _context.Configurations.FindAsync(id);
 
         if (entity == null)
             return NotFound();
 
-        entity.IsActive = !entity.IsActive;
-
+        entity.ToggleActive();
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
+
 }

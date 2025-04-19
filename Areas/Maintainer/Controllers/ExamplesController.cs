@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 
 [Area("Maintainer")]
+[ApiExplorerSettings(IgnoreApi = true)]
 [Route("Maintainer/[controller]")]
 [Authorize(Roles = "Administrator")]
 public class ExamplesController(ApplicationDbContext context, IMapper mapper) : Controller

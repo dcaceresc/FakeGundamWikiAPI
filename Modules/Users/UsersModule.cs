@@ -57,7 +57,7 @@ public class UsersModule() : CarterModule("api/users")
         if (request.UserId != id)
             return Results.BadRequest("The user id in the request does not match the id in the route");
 
-        var user = await context.Users.FindAsync(new object[] { id }, cancellationToken);
+        var user = await context.Users.FindAsync([id], cancellationToken);
 
         if (user == null)
             return Results.NotFound();
@@ -97,7 +97,7 @@ public class UsersModule() : CarterModule("api/users")
 
     private async Task<IResult> ToggleUser(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var user = await context.Users.FindAsync(new object[] { id }, cancellationToken);
+        var user = await context.Users.FindAsync([id], cancellationToken);
 
         if (user == null)
             return Results.NotFound();

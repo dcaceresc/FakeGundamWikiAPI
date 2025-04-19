@@ -1,14 +1,15 @@
 ﻿using FakeGundamWikiAPI.Areas.Security.Models.Account;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 
 [Area("Security")]
 [ApiExplorerSettings(IgnoreApi = true)]
 [Route("Security/[controller]")]
-public class AccountController(ApplicationDbContext context, AuthenticationService authenticationService) : Controller
+public class AccountController(Services.AuthenticationService authenticationService) : Controller
 {
-    private readonly ApplicationDbContext _context = context;
-    private readonly AuthenticationService _authenticationService = authenticationService;
+    private readonly Services.AuthenticationService _authenticationService = authenticationService;
 
     [HttpGet("/admin")]
     public IActionResult AdminLogin()
@@ -25,21 +26,24 @@ public class AccountController(ApplicationDbContext context, AuthenticationServi
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AdminLogin(AdminLoginRequest request)
     {
-        var admin = _context
-            .Users
-            .Include(x => x.UserRoles)
-            .ThenInclude(x => x.Role)
-            .Where(x => x.UserName == request.Username && x.Password == request.Password && x.UserRoles.Any(ur => ur.Role.RoleName == "Administrator"))
-            .FirstOrDefault();
+        var admin = SiteConfig.SuperAdminUserName == request.Username && SiteConfig.SuperAdminPassword == request.Password;
 
-        if (admin == null)
+        if (!admin)
         {
-            ModelState.AddModelError("Username", "Invalid username or password");
+            ModelState.AddModelError("Username", "Invalid username");
             return View();
         }
 
-        await _authenticationService.CreateCookie(admin.UserName, ["Administrator"]);
 
-        return RedirectToAction("Index", "Examples", new { area = "Maintainer" });
+        await _authenticationService.CreateCookie(request.Username, ["Administrator"]);
+
+        return RedirectToAction("Index", "Configurations", new { area = "Maintainer" });
+    }
+
+    [HttpGet("Logout")]
+    public async Task<IActionResult> LogoutAsync()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Index", "Home");
     }
 }

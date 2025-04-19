@@ -52,7 +52,13 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
     {
         await SeedRoleAsync("Administrator");
 
-        await SeedUserAsync("admin", "Usuario", "Administrador", "Administrator", "admin123");
+        await SeedUserAsync("admin", "User", "Administrator", "Administrator", "admin123");
+
+        await SeedConfiguration("SiteStatus", "true");
+        await SeedConfiguration("SiteURL", "https://fakegundamwiki.com");
+        await SeedConfiguration("SuperAdminUserName", "admin");
+        await SeedConfiguration("SuperAdminPassword", "admin123");
+        
 
         await _context.SaveChangesAsync();
     }
@@ -88,4 +94,14 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
             }
         }
     }
+
+    private async Task SeedConfiguration(string configurationName, string configurationValue)
+    {
+        if (!_context.Configurations.Any(x => x.ConfigurationName == configurationName))
+        {
+            var configuration = Data.Entities.Configuration.Create(configurationName, configurationValue);
+            await _context.Configurations.AddAsync(configuration);
+        }
+    }
+
 }

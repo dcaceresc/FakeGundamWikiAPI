@@ -1,3 +1,4 @@
+using FakeGundamWikiAPI.Data.Configuration;
 using FakeGundamWikiAPI.Data.Interceptor;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
 });
 
 builder.Services.AddScoped<ApplicationDbContextInitialiser>();
+builder.Services.AddScoped<ConfigurationInitializer>();
 builder.Services.AddScoped<AuthenticationService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
@@ -45,6 +47,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 await app.InitialiseDatabaseAsync();
+await app.InitialiseConfigurationAsync();
 
 app.UseSwagger();
 app.UseSwaggerUI();

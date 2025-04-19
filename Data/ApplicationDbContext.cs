@@ -5,6 +5,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Affiliation> Affiliations => Set<Affiliation>();
     public DbSet<Character> Characters => Set<Character>();
     public DbSet<CharacterAffiliation> CharacterAffiliations => Set<CharacterAffiliation>();
+    public DbSet<Data.Entities.Configuration> Configurations => Set<Data.Entities.Configuration>();
     public DbSet<Example> Examples => Set<Example>();
     public DbSet<ExampleType> ExampleTypes => Set<ExampleType>();
     public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
@@ -64,6 +65,17 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.HasOne(e => e.Affiliation)
             .WithMany(e => e.CharacterAffiliations)
             .HasForeignKey(e => e.AffiliationId);
+        });
+
+        builder.Entity<Data.Entities.Configuration>(entity =>
+        {
+            entity.HasKey(e => e.ConfigurationId);
+            entity.HasIndex(e => e.ConfigurationName)
+            .IsUnique();
+            entity.Property(e => e.ConfigurationName)
+            .HasColumnType("varchar(100)");
+            entity.Property(e => e.ConfigurationValue)
+            .HasColumnType("varchar(1000)");
         });
 
         builder.Entity<Example>(entity =>
@@ -196,7 +208,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.LastName)
             .HasColumnType("varchar(30)");
 
-            entity.Property(e => e.Password)
+            entity.Property(e => e.HashPassword)
             .HasColumnType("varchar(100)");
         });
 
@@ -216,6 +228,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         ConfigureAuditableEntity<Affiliation>(builder);
         ConfigureAuditableEntity<Character>(builder);
         ConfigureAuditableEntity<CharacterAffiliation>(builder);
+        ConfigureAuditableEntity<Data.Entities.Configuration>(builder);
         ConfigureAuditableEntity<Example>(builder);
         ConfigureAuditableEntity<ExampleType>(builder);
         ConfigureAuditableEntity<Manufacturer>(builder);

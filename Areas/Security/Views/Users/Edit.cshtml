@@ -1,0 +1,38 @@
+﻿@using FakeGundamWikiAPI.Areas.Security.Models.Users
+@model UserVM
+@{
+    Layout = null;
+}
+
+<form asp-action="Edit">
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label">UserName</label>
+        <input type="text" class="form-control" asp-for="UserName">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label">FirstName</label>
+        <input type="text" class="form-control" asp-for="FirstName">
+    </div>
+
+     <div class="mb-3"> 
+         <label asp-for="LastName" class="form-label">LastName</label> 
+        <input type="text" class="form-control" asp-for="LastName"> 
+    </div> 
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password">
+     </div>
+
+    <div class="mb-3">
+        <lable asp-for="RoleIds" class="form-label">Roles</lable>
+        <select asp-for="RoleIds" class="form-control" asp-items="@(new SelectList(ViewBag.Roles, "RoleId", "RoleName"))"></select>
+
+    </div>
+
+    <div class="form-group float-end">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>

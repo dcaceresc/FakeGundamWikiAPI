@@ -61,7 +61,7 @@ public class CharactersModule() : CarterModule("api/characters")
         if (request.CharacterId != id)
             return Results.BadRequest("The character id in the request does not match the id in the route");
 
-        var character = await context.Characters.FindAsync(new object[] { id }, cancellationToken);
+        var character = await context.Characters.FindAsync([id], cancellationToken);
 
         if (character == null)
             return Results.NotFound();
@@ -101,7 +101,7 @@ public class CharactersModule() : CarterModule("api/characters")
 
     private async Task<IResult> ToggleCharacter(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var character = await context.Characters.FindAsync(new object[] { id }, cancellationToken);
+        var character = await context.Characters.FindAsync([id], cancellationToken);
 
         if (character == null)
             return Results.NotFound();
