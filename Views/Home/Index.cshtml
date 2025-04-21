@@ -27,10 +27,33 @@
 @section Scripts {
     <script type="text/javascript">
 
-        function getMobileSuit() {
+        function getAccessToken(){
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("Post","api/auth/login",true)
+
+            xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+
+            xhr.onreadystatechange = function (){
+                if (xhr.readyState == 4 && xhr.status == 200){
+
+                    var json = JSON.parse(xhr.responseText);
+
+                    getMobileSuit(json.accessToken);
+                }
+            }
+
+            xhr.send(JSON.stringify({ "username" : "user", "password": "user123"}));
+        }
+
+
+
+        function getMobileSuit(token) {
 
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "api/mobile-suits/1", true);
+
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {

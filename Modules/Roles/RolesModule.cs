@@ -1,15 +1,20 @@
-﻿
-namespace FakeGundamWikiAPI.Modules.Roles;
+﻿namespace FakeGundamWikiAPI.Modules.Roles;
 
-public class RolesModule() : CarterModule("api/roles")
+public class RolesModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetRoles);
-        app.MapGet("{id:int}", GetRoleById);
-        app.MapPost("", CreateRole);
-        app.MapPut("", UpdateRole);
-        app.MapDelete("{id:int}", ToggleRole);
+        var group = app.MapGroup("api/roles")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetRoles);
+        group.MapGet("{id:int}", GetRoleById);
+        group.MapPost("", CreateRole);
+        group.MapPut("", UpdateRole);
+        group.MapDelete("{id:int}", ToggleRole);
     }
 
     public async Task<IResult> GetRoles(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)
@@ -50,7 +55,7 @@ public class RolesModule() : CarterModule("api/roles")
             return Results.BadRequest("The role id in the request does not match the id in the route");
 
 
-        var role = await context.Roles.FindAsync(new object[] { id }, cancellationToken);
+        var role = await context.Roles.FindAsync([id], cancellationToken);
 
         if (role == null)
             return Results.NotFound();
@@ -64,7 +69,7 @@ public class RolesModule() : CarterModule("api/roles")
 
     public async Task<IResult> ToggleRole(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var role = await context.Roles.FindAsync(new object[] { id }, cancellationToken);
+        var role = await context.Roles.FindAsync([id], cancellationToken);
 
         if (role == null)
             return Results.NotFound();

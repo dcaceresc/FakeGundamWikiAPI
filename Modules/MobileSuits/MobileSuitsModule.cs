@@ -1,14 +1,20 @@
 ﻿namespace FakeGundamWikiAPI.Modules.MobileSuits;
 
-public class MobileSuitsModule() : CarterModule("api/mobile-suits")
+public class MobileSuitsModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetMobileSuits);
-        app.MapGet("{id:int}", GetMobileSuitById);
-        app.MapPost("", CreateMobileSuit);
-        app.MapPut("{id:int}", UpdateMobileSuit);
-        app.MapDelete("{id:int}", ToggleMobileSuit);
+        var group = app.MapGroup("api/mobile-suits")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetMobileSuits);
+        group.MapGet("{id:int}", GetMobileSuitById);
+        group.MapPost("", CreateMobileSuit);
+        group.MapPut("{id:int}", UpdateMobileSuit);
+        group.MapDelete("{id:int}", ToggleMobileSuit);
     }
 
     public async Task<IResult> GetMobileSuits(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)

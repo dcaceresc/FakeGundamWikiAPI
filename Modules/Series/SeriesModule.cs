@@ -1,14 +1,21 @@
 ﻿namespace FakeGundamWikiAPI.Modules.Series;
 
-public class SeriesModule() : CarterModule("api/series")
+public class SeriesModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetSeries);
-        app.MapGet("{id:int}", GetSeriesById);
-        app.MapPost("", CreateSeries);
-        app.MapPut("{id:int}", UpdateSeries);
-        app.MapDelete("{id:int}", ToggleSeries);
+        var group = app.MapGroup("api/series")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+
+        group.MapGet("", GetSeries);
+        group.MapGet("{id:int}", GetSeriesById);
+        group.MapPost("", CreateSeries);
+        group.MapPut("{id:int}", UpdateSeries);
+        group.MapDelete("{id:int}", ToggleSeries);
     }
 
 
@@ -52,7 +59,7 @@ public class SeriesModule() : CarterModule("api/series")
         if (request.SerieId != id)
             return Results.BadRequest("The serie id in the request does not match the id in the route");
 
-        var serie = await context.Series.FindAsync(new object[] { id }, cancellationToken);
+        var serie = await context.Series.FindAsync([id], cancellationToken);
 
         if (serie == null)
             return Results.NotFound();
@@ -66,7 +73,7 @@ public class SeriesModule() : CarterModule("api/series")
 
     public async Task<IResult> ToggleSeries(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var serie = await context.Series.FindAsync(new object[] { id }, cancellationToken);
+        var serie = await context.Series.FindAsync([id], cancellationToken);
 
         if (serie == null)
             return Results.NotFound();

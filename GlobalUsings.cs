@@ -5,5 +5,7 @@ global using FakeGundamWikiAPI.Common;
 global using FakeGundamWikiAPI.Data;
 global using FakeGundamWikiAPI.Data.Entities;
 global using FakeGundamWikiAPI.Services;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;

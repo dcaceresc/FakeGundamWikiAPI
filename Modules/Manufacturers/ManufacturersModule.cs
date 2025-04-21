@@ -1,14 +1,20 @@
 ﻿namespace FakeGundamWikiAPI.Modules.Manufacturers;
 
-public class ManufacturersModule() : CarterModule("api/manufacturers")
+public class ManufacturersModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetManufacturers);
-        app.MapGet("{id:int}", GetManufacturerById);
-        app.MapPost("", CreateManufacturer);
-        app.MapPut("{id:int}", UpdateManufacturer);
-        app.MapDelete("{id:int}", ToggleManufacturer);
+        var group = app.MapGroup("api/manufacturers")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetManufacturers);
+        group.MapGet("{id:int}", GetManufacturerById);
+        group.MapPost("", CreateManufacturer);
+        group.MapPut("{id:int}", UpdateManufacturer);
+        group.MapDelete("{id:int}", ToggleManufacturer);
     }
 
     public async Task<IResult> GetManufacturers(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)

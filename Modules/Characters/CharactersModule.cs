@@ -1,14 +1,20 @@
 ﻿namespace FakeGundamWikiAPI.Modules.Characters;
 
-public class CharactersModule() : CarterModule("api/characters")
+public class CharactersModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetCharacters);
-        app.MapGet("{id:int}", GetCharacterById);
-        app.MapPost("", CreateCharacter);
-        app.MapPut("{id:int}", UpdateCharacter);
-        app.MapDelete("{id:int}", ToggleCharacter);
+        var group = app.MapGroup("api/characters")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetCharacters);
+        group.MapGet("{id:int}", GetCharacterById);
+        group.MapPost("", CreateCharacter);
+        group.MapPut("{id:int}", UpdateCharacter);
+        group.MapDelete("{id:int}", ToggleCharacter);
     }
 
     private async Task<IResult> GetCharacters(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)

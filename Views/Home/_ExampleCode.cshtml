@@ -3,14 +3,14 @@
 <div class="bg-body-tertiary border rounded-3 mb-3">
     <pre>
     <code>
-    fetch('@SiteConfig.SiteUrl/FakeGundamWikiAPI/api/mobile-suits/1')
+    fetch('@SiteConfig.SiteUrl/api/mobile-suits/1')
     .then(res=&gt;res.json())
     .then(json=&gt;console.log(json))
         </code> 
     </pre>
 </div>
 
-<button class="btn btn-primary mb-3" onclick="getMobileSuit()">
+<button class="btn btn-primary mb-3" onclick="getAccessToken()">
     <i class="bi bi-play-fill"></i>
     Try it
 </button>

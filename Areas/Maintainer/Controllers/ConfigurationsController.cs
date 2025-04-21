@@ -1,6 +1,4 @@
 ﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Configurations;
-using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 
@@ -36,7 +34,7 @@ public class ConfigurationsController(ApplicationDbContext context, IMapper mapp
     {
         if (ModelState.IsValid)
         {
-            var entity = Configuration.Create(model.ConfigurationName,model.ConfigurationValue);
+            var entity = Configuration.Create(model.ConfigurationName, model.ConfigurationValue);
             _context.Add(entity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

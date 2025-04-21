@@ -1,6 +1,5 @@
 ﻿using FakeGundamWikiAPI.Areas.Security.Models.Roles;
 using FakeGundamWikiAPI.Areas.Security.Models.Users;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 

@@ -1,5 +1,4 @@
 ﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.ExampleTypes;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 

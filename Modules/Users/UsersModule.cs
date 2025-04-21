@@ -1,14 +1,20 @@
 ﻿namespace FakeGundamWikiAPI.Modules.Users;
 
-public class UsersModule() : CarterModule("api/users")
+public class UsersModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetUsers);
-        app.MapGet("{id:int}", GetUserById);
-        app.MapPost("", CreateUser);
-        app.MapPut("{id:int}", UpdateUser);
-        app.MapDelete("{id:int}", ToggleUser);
+        var group = app.MapGroup("api/users")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetUsers);
+        group.MapGet("{id:int}", GetUserById);
+        group.MapPost("", CreateUser);
+        group.MapPut("{id:int}", UpdateUser);
+        group.MapDelete("{id:int}", ToggleUser);
     }
 
     private async Task<IResult> GetUsers(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)

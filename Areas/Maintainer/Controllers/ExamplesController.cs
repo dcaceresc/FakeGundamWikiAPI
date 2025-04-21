@@ -1,6 +1,5 @@
 ﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples;
 using FakeGundamWikiAPI.Areas.Maintainer.Models.ExampleTypes;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;

@@ -1,15 +1,21 @@
 ﻿namespace FakeGundamWikiAPI.Modules.Universes;
 
-public class UniversesModule() : CarterModule("api/universes")
+public class UniversesModule() : CarterModule()
 {
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetUniverses);
-        app.MapGet("{id:int}", GetUniverseById);
-        app.MapPost("", CreateUniverse);
-        app.MapPut("{id:int}", UpdateUniverse);
-        app.MapDelete("{id:int}", ToggleUniverse);
+        var group = app.MapGroup("api/universes")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetUniverses);
+        group.MapGet("{id:int}", GetUniverseById);
+        group.MapPost("", CreateUniverse);
+        group.MapPut("{id:int}", UpdateUniverse);
+        group.MapDelete("{id:int}", ToggleUniverse);
 
     }
 
@@ -51,7 +57,7 @@ public class UniversesModule() : CarterModule("api/universes")
         if (request.UniverseId != id)
             return Results.BadRequest("The universe id in the request does not match the id in the route");
 
-        var universe = await context.Universes.FindAsync(new object[] { id }, cancellationToken);
+        var universe = await context.Universes.FindAsync([id], cancellationToken);
 
         if (universe == null)
             return Results.NotFound();
@@ -65,7 +71,7 @@ public class UniversesModule() : CarterModule("api/universes")
 
     public async Task<IResult> ToggleUniverse(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var universe = await context.Universes.FindAsync(new object[] { id }, cancellationToken);
+        var universe = await context.Universes.FindAsync([id], cancellationToken);
 
         if (universe == null)
             return Results.NotFound();

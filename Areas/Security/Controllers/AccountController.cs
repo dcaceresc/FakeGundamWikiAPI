@@ -1,6 +1,6 @@
 ﻿using FakeGundamWikiAPI.Areas.Security.Models.Account;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 

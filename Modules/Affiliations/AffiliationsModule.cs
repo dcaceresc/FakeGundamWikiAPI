@@ -1,15 +1,20 @@
-﻿
-namespace FakeGundamWikiAPI.Modules.Affiliations;
+﻿namespace FakeGundamWikiAPI.Modules.Affiliations;
 
-public class AffiliationsModule() : CarterModule("api/affiliations")
+public class AffiliationsModule() : CarterModule()
 {
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("", GetAllAffiliations);
-        app.MapGet("{id:int}", GetAffiliationById);
-        app.MapPost("", CreateAffiliation);
-        app.MapPut("{id:int}", UpdateAffiliation);
-        app.MapDelete("{id:int}", ToggleAffiliation);
+        var group = app.MapGroup("api/affiliations")
+            .RequireAuthorization(new AuthorizeAttribute
+            {
+                AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            });
+
+        group.MapGet("", GetAllAffiliations);
+        group.MapGet("{id:int}", GetAffiliationById);
+        group.MapPost("", CreateAffiliation);
+        group.MapPut("{id:int}", UpdateAffiliation);
+        group.MapDelete("{id:int}", ToggleAffiliation);
     }
 
     public async Task<IResult> GetAllAffiliations(ApplicationDbContext context, IMapper mapper, CancellationToken cancellationToken)
@@ -50,7 +55,7 @@ public class AffiliationsModule() : CarterModule("api/affiliations")
         if (request.AffiliationId != id)
             return Results.BadRequest("The affiliation id in the request does not match the id in the route");
 
-        var affiliation = await context.Affiliations.FindAsync(new object[] { id }, cancellationToken);
+        var affiliation = await context.Affiliations.FindAsync([id], cancellationToken);
 
         if (affiliation == null)
             return Results.NotFound();
@@ -64,7 +69,7 @@ public class AffiliationsModule() : CarterModule("api/affiliations")
 
     public async Task<IResult> ToggleAffiliation(int id, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var affiliation = await context.Affiliations.FindAsync(new object[] { id }, cancellationToken);
+        var affiliation = await context.Affiliations.FindAsync([id], cancellationToken);
 
         if (affiliation == null)
             return Results.NotFound();
