@@ -2,10 +2,17 @@
 
 <div class="bg-body-tertiary border rounded-3 mb-3">
     <pre>
-    <code>
-    fetch('@SiteConfig.SiteUrl/api/mobile-suits/1')
-    .then(res=&gt;res.json())
-    .then(json=&gt;console.log(json))
+        <code>
+fetch('@SiteConfig.SiteUrl/api/mobile-suits/1', {
+method: 'GET',
+headers: {
+    'Authorization': 'Bearer YOUR_TOKEN_HERE',
+    'Content-Type': 'application/json'
+    }
+})
+.then(res => res.json())
+.then(json => console.log(json))
+.catch(err => console.error('Error:', err));
         </code> 
     </pre>
 </div>

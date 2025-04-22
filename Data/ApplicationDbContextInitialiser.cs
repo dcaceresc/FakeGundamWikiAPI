@@ -55,7 +55,7 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
         await SeedUserAsync("admin", "User", "Administrator", "Administrator", "admin123");
 
         await SeedConfiguration("SiteStatus", "true");
-        await SeedConfiguration("SiteURL", "https://fakegundamwiki.com");
+        await SeedConfiguration("SiteURL", "https://fakegundamwikiapi.onrender.com/");
         await SeedConfiguration("SuperAdminUserName", "admin");
         await SeedConfiguration("SuperAdminPassword", "admin123");
 
