@@ -38,15 +38,15 @@ public class UsersModule() : CarterModule()
         return Results.Ok(user);
     }
 
-    private async Task<IResult> CreateUser([FromBody] CreateUserRequest request, ApplicationDbContext context, CancellationToken cancellationToken)
+    private async Task<IResult> CreateUser([FromBody] CreateUserRequest request, AuthenticationService authenticationService, ApplicationDbContext context, CancellationToken cancellationToken)
     {
-        var user = User.Create(request.UserName, request.FirstName, request.LastName, request.Password);
+        var user = User.Create(request.UserName, request.FirstName, request.LastName, authenticationService.HashPassword(request.Password));
 
         context.Users.Add(user);
 
         await context.SaveChangesAsync(cancellationToken);
 
-        foreach (var item in request.RoleIds)
+        foreach (var item in request.RolesId)
         {
             var userRole = user.AssignRole(item);
 
@@ -58,7 +58,7 @@ public class UsersModule() : CarterModule()
         return Results.Created($"api/users/{user.UserId}", user);
     }
 
-    private async Task<IResult> UpdateUser(int id, [FromBody] UpdateUserRequest request, ApplicationDbContext context, CancellationToken cancellationToken)
+    private async Task<IResult> UpdateUser(int id, [FromBody] UpdateUserRequest request, ApplicationDbContext context, AuthenticationService authenticationService, CancellationToken cancellationToken)
     {
         if (request.UserId != id)
             return Results.BadRequest("The user id in the request does not match the id in the route");
@@ -68,11 +68,11 @@ public class UsersModule() : CarterModule()
         if (user == null)
             return Results.NotFound();
 
-        user.Update(request.UserName, request.FirstName, request.LastName, request.Password);
+        user.Update(request.UserName, request.FirstName, request.LastName, authenticationService.HashPassword(request.Password));
 
         var oldUserRoles = await context.UserRoles.Where(x => x.UserId == request.UserId).ToListAsync(cancellationToken);
 
-        foreach (var item in request.RoleIds)
+        foreach (var item in request.RolesId)
         {
             var exitingUserRole = oldUserRoles.FirstOrDefault(x => x.RoleId == item);
 
@@ -90,7 +90,7 @@ public class UsersModule() : CarterModule()
 
         foreach (var userRole in oldUserRoles)
         {
-            if (!request.RoleIds.Contains(userRole.RoleId))
+            if (!request.RolesId.Contains(userRole.RoleId))
             {
                 context.UserRoles.Remove(userRole);
             }

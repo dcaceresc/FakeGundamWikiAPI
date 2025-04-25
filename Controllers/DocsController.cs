@@ -1,7 +1,7 @@
 ﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Examples;
 
 namespace FakeGundamWikiAPI.Controllers;
-public class DocsController(ApplicationDbContext context, IMapper mapper) : Controller
+public class DocsController(ApplicationDbContext context, IMapper mapper) : BaseController
 {
     private readonly ApplicationDbContext _context = context;
     private readonly IMapper _mapper = mapper;

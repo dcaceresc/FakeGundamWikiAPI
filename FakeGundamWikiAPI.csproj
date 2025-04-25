@@ -23,5 +23,11 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<None Update="FakeGundamWikiAPI.db">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

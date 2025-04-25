@@ -56,8 +56,6 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
 
         await SeedConfiguration("SiteStatus", "true");
         await SeedConfiguration("SiteURL", "https://fakegundamwikiapi.onrender.com/");
-        await SeedConfiguration("SuperAdminUserName", "admin");
-        await SeedConfiguration("SuperAdminPassword", "admin123");
 
 
         await _context.SaveChangesAsync();

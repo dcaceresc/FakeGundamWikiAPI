@@ -6,7 +6,7 @@ public class CreateUserRequest
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string Password { get; set; } = null!;
-    public IList<int> RoleIds { get; set; } = null!;
+    public IList<int> RolesId { get; set; } = null!;
 }
 
 public class UpdateUserRequest
@@ -16,5 +16,5 @@ public class UpdateUserRequest
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string Password { get; set; } = null!;
-    public IList<int> RoleIds { get; set; } = null!;
+    public IList<int> RolesId { get; set; } = null!;
 }

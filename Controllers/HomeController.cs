@@ -2,7 +2,7 @@ using FakeGundamWikiAPI.Models;
 using System.Diagnostics;
 
 namespace FakeGundamWikiAPI.Controllers;
-public class HomeController(ILogger<HomeController> logger) : Controller
+public class HomeController(ILogger<HomeController> logger) : BaseController
 {
     private readonly ILogger<HomeController> _logger = logger;
 
@@ -11,7 +11,7 @@ public class HomeController(ILogger<HomeController> logger) : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Offline()
     {
         return View();
     }

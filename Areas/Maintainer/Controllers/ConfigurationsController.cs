@@ -1,4 +1,5 @@
 ﻿using FakeGundamWikiAPI.Areas.Maintainer.Models.Configurations;
+using FakeGundamWikiAPI.Controllers;
 
 namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 
@@ -6,7 +7,7 @@ namespace FakeGundamWikiAPI.Areas.Maintainer.Controllers;
 [ApiExplorerSettings(IgnoreApi = true)]
 [Route("Maintainer/[controller]")]
 [Authorize(Roles = "Administrator")]
-public class ConfigurationsController(ApplicationDbContext context, IMapper mapper) : Controller
+public class ConfigurationsController(ApplicationDbContext context, IMapper mapper) : BaseController
 {
     private readonly ApplicationDbContext _context = context;
     private readonly IMapper _mapper = mapper;

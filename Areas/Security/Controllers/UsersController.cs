@@ -1,5 +1,6 @@
 ﻿using FakeGundamWikiAPI.Areas.Security.Models.Roles;
 using FakeGundamWikiAPI.Areas.Security.Models.Users;
+using FakeGundamWikiAPI.Controllers;
 
 namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 
@@ -7,7 +8,7 @@ namespace FakeGundamWikiAPI.Areas.Security.Controllers;
 [ApiExplorerSettings(IgnoreApi = true)]
 [Route("Security/[controller]")]
 [Authorize(Roles = "Administrator")]
-public class UsersController(ApplicationDbContext context, IMapper mapper, AuthenticationService authenticationService) : Controller
+public class UsersController(ApplicationDbContext context, IMapper mapper, AuthenticationService authenticationService) : BaseController
 {
     private readonly ApplicationDbContext _context = context;
     private readonly IMapper _mapper = mapper;

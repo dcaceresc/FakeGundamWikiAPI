@@ -30,8 +30,6 @@ public class ConfigurationInitializer(ILogger<ConfigurationInitializer> logger, 
             {
                 SiteConfig.SiteStatus = Convert.ToBoolean(configurations.Find(x => x.ConfigurationName.Equals("SiteStatus", StringComparison.CurrentCultureIgnoreCase))?.ConfigurationValue ?? "true");
                 SiteConfig.SiteUrl = configurations.Find(x => x.ConfigurationName.Equals("SiteUrl", StringComparison.CurrentCultureIgnoreCase))?.ConfigurationValue ?? "";
-                SiteConfig.SuperAdminUserName = configurations.Find(x => x.ConfigurationName.Equals("SuperAdminUserName", StringComparison.CurrentCultureIgnoreCase))?.ConfigurationValue ?? "";
-                SiteConfig.SuperAdminPassword = configurations.Find(x => x.ConfigurationName.Equals("SuperAdminPassword", StringComparison.CurrentCultureIgnoreCase))?.ConfigurationValue ?? "";
             }
         }
         catch (Exception ex)
